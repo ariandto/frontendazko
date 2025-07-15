@@ -1,0 +1,35 @@
+.marquee-container {
+  width: 100%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.marquee-text {
+  white-space: nowrap;
+  padding: 15px 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
