@@ -8,7 +8,6 @@ import { API_URL, API_USERS } from "../config/apiurl";
 
 interface User {
   id: number;
-  nik: string;
   name: string;
   department: string;
   shift: string;
@@ -51,12 +50,12 @@ export default function PhotoList() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-900 via-rose-900 to-pink-900 flex flex-col items-center justify-center p-4">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-4">
         <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 text-center shadow-2xl border border-white/20">
           <Loader className="animate-spin text-white h-12 w-12 mx-auto mb-4" />
           <p className="text-white text-lg font-medium">Memuat data pengguna...</p>
           <div className="mt-4 w-32 h-2 bg-white/20 rounded-full mx-auto overflow-hidden">
-            <div className="h-full bg-gradient-to-r from-red-400 to-rose-500 rounded-full animate-pulse"></div>
+            <div className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse"></div>
           </div>
         </div>
       </div>
@@ -83,11 +82,11 @@ export default function PhotoList() {
   return (
     <>
       <Navigation />
-      <div className="pt-16 min-h-screen bg-gradient-to-br from-red-900 via-rose-900 to-pink-900 relative overflow-hidden">
+      <div className="pt-16 min-h-screen bg-gradient-to-br from-red-400 via-red-600 to-red-500 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-red-400/20 to-rose-600/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-pink-400/20 to-red-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
         
         <div className="relative z-10 py-6 px-4 sm:px-6 lg:px-8">
@@ -103,13 +102,13 @@ export default function PhotoList() {
               </Link>
               
               <div className="text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-red-400 via-rose-500 to-pink-600 bg-clip-text text-transparent mb-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-200  bg-clip-text text-transparent mb-4">
                   Person in Charge
                 </h1>
-                <div className="flex items-center justify-center sm:justify-start space-x-2 text-white/80">
+                <div className="flex items-center justify-center sm:justify-start space-x-2 text-white/100">
                   <Users className="w-5 h-5" />
                   <span className="text-lg">Total: </span>
-                  <span className="bg-gradient-to-r from-red-400 to-rose-500 bg-clip-text text-transparent font-bold text-xl">
+                  <span className="bg-gradient-to-r from-gray-200 to-gray-50 bg-clip-text text-transparent font-bold text-xl">
                     {users.length}
                   </span>
                   <span className="text-lg">PIC</span>
@@ -122,7 +121,7 @@ export default function PhotoList() {
               {users.map((user, index) => (
                 <div
                   key={user.id}
-                  className="group bg-white/10 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-red-500/25"
+                  className="group bg-white/10 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Photo Section */}
@@ -155,18 +154,14 @@ export default function PhotoList() {
                       <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
                         {user.name}
                       </h3>
-                      <p className="text-white/60 text-sm flex items-center justify-center">
-                        <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
-                        NIK: {user.nik}
-                      </p>
                     </div>
 
                     {/* Department & Shift Tags */}
                     <div className="flex flex-wrap gap-2 mb-4 justify-center">
-                      <span className="text-xs font-medium bg-gradient-to-r from-red-500 to-rose-500 text-white px-3 py-1 rounded-full shadow-lg">
+                      <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow-lg">
                         {user.department}
                       </span>
-                      <span className="text-xs font-medium bg-gradient-to-r from-pink-500 to-red-500 text-white px-3 py-1 rounded-full shadow-lg flex items-center">
+                      <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow-lg flex items-center">
                         <Clock className="w-3 h-3 mr-1" />
                         Shift {user.shift}
                       </span>
@@ -180,7 +175,7 @@ export default function PhotoList() {
                         aria-label="Chat di WhatsApp"
                       >
                         <FaWhatsapp className="w-5 h-5 mr-2" />
-                        Chat WhatsApp
+                        Chat
                       </button>
                     </div>
                   </div>
