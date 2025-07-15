@@ -1,7 +1,7 @@
 // src/pages/PhotoList.tsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Loader, AlertTriangle, MapPin, Clock, Users } from "lucide-react";
+import { ArrowLeft, Loader, AlertTriangle,  Clock, Users } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "./Navigation";
 import { API_URL, API_USERS } from "../config/apiurl";
