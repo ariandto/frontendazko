@@ -83,7 +83,7 @@ export default function PhotoList() {
   return (
     <>
       <Navigation />
-      <div className="pt-16 min-h-screen bg-gradient-to-br from-orange-400 via-red-400 to-red-600 relative overflow-hidden">
+      <div className="pt-16 min-h-screen bg-gradient-to-br from-violet-900 via-indigo-900 to-purple-900 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
@@ -126,41 +126,43 @@ export default function PhotoList() {
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Photo Section */}
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={`${API_URL}/${user.photo}`}
-                      alt={user.name}
-                      className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                      onError={(e) =>
-                        (e.currentTarget.src = "https://via.placeholder.com/400")
-                      }
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    
-                    {/* WhatsApp Button Overlay */}
-                    <button
-                      className="absolute top-4 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
-                      onClick={() => openWhatsApp(user.phone)}
-                      aria-label="Chat di WhatsApp"
-                    >
-                      <FaWhatsapp className="w-5 h-5" />
-                    </button>
+                  <div className="relative p-4 sm:p-6 pt-6">
+                    <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
+                      <img
+                        src={`${API_URL}/${user.photo}`}
+                        alt={user.name}
+                        className="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 group-hover:scale-110 transition-all duration-500 shadow-2xl"
+                        onError={(e) =>
+                          (e.currentTarget.src = "https://via.placeholder.com/400")
+                        }
+                      />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                      
+                      {/* WhatsApp Button Overlay */}
+                      <button
+                        className="absolute -bottom-2 -right-2 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100 border-2 border-white"
+                        onClick={() => openWhatsApp(user.phone)}
+                        aria-label="Chat di WhatsApp"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                      </button>
+                    </div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="p-4 sm:p-6">
+                  <div className="px-4 sm:px-6 pb-4 sm:pb-6 text-center">
                     <div className="mb-4">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-1 truncate">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
                         {user.name}
                       </h3>
-                      <p className="text-white/60 text-sm flex items-center">
+                      <p className="text-white/60 text-sm flex items-center justify-center">
                         <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
                         NIK: {user.nik}
                       </p>
                     </div>
 
                     {/* Department & Shift Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-4 justify-center">
                       <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow-lg">
                         {user.department}
                       </span>
@@ -171,18 +173,14 @@ export default function PhotoList() {
                     </div>
 
                     {/* Contact Section */}
-                    <div className="flex items-center justify-between pt-4 border-t border-white/20">
-                      <div className="flex items-center text-white/80">
-                        <Phone className="w-4 h-4 mr-2" />
-                        <span className="text-sm">WhatsApp</span>
-                      </div>
+                    <div className="flex items-center justify-center pt-4 border-t border-white/20">
                       <button
-                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-4 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg text-sm flex items-center"
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-6 py-3 rounded-2xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg text-sm flex items-center"
                         onClick={() => openWhatsApp(user.phone)}
                         aria-label="Chat di WhatsApp"
                       >
-                        <FaWhatsapp className="w-4 h-4 mr-2" />
-                        Chat
+                        <FaWhatsapp className="w-5 h-5 mr-2" />
+                        Chat WhatsApp
                       </button>
                     </div>
                   </div>
