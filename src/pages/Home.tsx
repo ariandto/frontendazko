@@ -175,7 +175,7 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
           <div className="text-gray-500">No LC:</div>
           <div className="font-semibold">{item.noLC}</div>
           <div className="text-gray-500">Delivery Date:</div>
-          <div className="font-semibold">{parseDeliveryDate(item.noLC)}</div>
+          <div className="font-semibold text-red-500">{parseDeliveryDate(item.noLC)}</div>
           <div className="text-gray-500">Delivery:</div>
           <div className="font-semibold text-green-600">{item.delivery}</div>
           <div className="text-gray-500">Via Hub:</div>

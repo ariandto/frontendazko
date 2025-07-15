@@ -1,7 +1,7 @@
 // src/pages/PhotoList.tsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowLeft, Loader, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Loader, AlertTriangle, Phone, MapPin, Clock, Users } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "./Navigation";
 import { API_URL, API_USERS } from "../config/apiurl";
@@ -51,24 +51,31 @@ export default function PhotoList() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100 flex flex-col items-center justify-center">
-        <Loader className="animate-spin text-red-500 h-10 w-10" />
-        <p className="mt-4 text-gray-600">Memuat data pengguna...</p>
+      <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-4">
+        <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 text-center shadow-2xl border border-white/20">
+          <Loader className="animate-spin text-white h-12 w-12 mx-auto mb-4" />
+          <p className="text-white text-lg font-medium">Memuat data pengguna...</p>
+          <div className="mt-4 w-32 h-2 bg-white/20 rounded-full mx-auto overflow-hidden">
+            <div className="h-full bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full animate-pulse"></div>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100 flex flex-col items-center justify-center">
-        <AlertTriangle className="text-red-500 h-10 w-10 mb-4" />
-        <p className="text-red-700 font-medium">{error}</p>
-        <button
-          onClick={fetchUsers}
-          className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
-        >
-          Coba Lagi
-        </button>
+      <div className="min-h-screen bg-gradient-to-br from-red-900 via-pink-900 to-rose-900 flex flex-col items-center justify-center p-4">
+        <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 text-center shadow-2xl border border-white/20 max-w-md">
+          <AlertTriangle className="text-red-400 h-16 w-16 mx-auto mb-4" />
+          <p className="text-white font-medium text-lg mb-6">{error}</p>
+          <button
+            onClick={fetchUsers}
+            className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-2xl font-medium hover:from-red-600 hover:to-pink-600 transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            Coba Lagi
+          </button>
+        </div>
       </div>
     );
   }
@@ -76,61 +83,122 @@ export default function PhotoList() {
   return (
     <>
       <Navigation />
-      <div className="pt-20 min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100 py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <Link
-            to="/"
-            className="inline-flex items-center mb-6 text-red-500 hover:text-red-600 font-medium transition-colors"
-          >
-            <ArrowLeft className="mr-2" /> Kembali
-          </Link>
-          <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
-              Daftar PIC
-            </h1>
-            <p className="mt-4 text-gray-600">
-              Total: <span className="font-semibold text-red-600">{users.length}</span> PIC
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {users.map((user) => (
-              <div
-                key={user.id}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 flex flex-col"
+      <div className="pt-16 min-h-screen bg-gradient-to-br from-orange-400 via-red-400 to-red-600 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-pink-400/20 to-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        
+        <div className="relative z-10 py-6 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            {/* Header Section */}
+            <div className="mb-8">
+              <Link
+                to="/"
+                className="inline-flex items-center mb-6 text-white/80 hover:text-white font-medium transition-all duration-300 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 hover:bg-white/20 group"
               >
-                <img
-                  src={`${API_URL}/${user.photo}`}
-                  alt={user.name}
-                  className="w-full h-64 object-cover"
-                  onError={(e) =>
-                    (e.currentTarget.src = "https://via.placeholder.com/400")
-                  }
-                />
-                <div className="p-6 flex flex-col flex-1">
-                  <h3 className="text-xl font-bold text-gray-800">{user.name}</h3>
-                  <p className="text-gray-500 text-sm">NIK: {user.nik}</p>
-                  <div className="mt-4">
-                    <span className="text-xs font-medium bg-red-100 text-red-700 px-3 py-1 rounded-full">
-                      {user.department}
-                    </span>
-                    <span className="ml-2 text-xs font-medium bg-rose-100 text-rose-700 px-3 py-1 rounded-full">
-                      Shift {user.shift}
-                    </span>
-                  </div>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-sm text-gray-600">WhatsApp:</span>
+                <ArrowLeft className="mr-2 w-5 h-5 group-hover:-translate-x-1 transition-transform" /> 
+                Kembali
+              </Link>
+              
+              <div className="text-center sm:text-left">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
+                  Person in Charge
+                </h1>
+                <div className="flex items-center justify-center sm:justify-start space-x-2 text-white/80">
+                  <Users className="w-5 h-5" />
+                  <span className="text-lg">Total: </span>
+                  <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent font-bold text-xl">
+                    {users.length}
+                  </span>
+                  <span className="text-lg">PIC</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Grid Layout */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+              {users.map((user, index) => (
+                <div
+                  key={user.id}
+                  className="group bg-white/10 backdrop-blur-lg rounded-3xl overflow-hidden border border-white/20 hover:border-white/40 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  {/* Photo Section */}
+                  <div className="relative overflow-hidden">
+                    <img
+                      src={`${API_URL}/${user.photo}`}
+                      alt={user.name}
+                      className="w-full h-48 sm:h-56 lg:h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                      onError={(e) =>
+                        (e.currentTarget.src = "https://via.placeholder.com/400")
+                      }
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                    
+                    {/* WhatsApp Button Overlay */}
                     <button
-                      className="text-green-600 hover:text-green-700 transition-colors"
+                      className="absolute top-4 right-4 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100"
                       onClick={() => openWhatsApp(user.phone)}
                       aria-label="Chat di WhatsApp"
                     >
-                      <FaWhatsapp className="w-6 h-6" />
+                      <FaWhatsapp className="w-5 h-5" />
                     </button>
                   </div>
+
+                  {/* Content Section */}
+                  <div className="p-4 sm:p-6">
+                    <div className="mb-4">
+                      <h3 className="text-lg sm:text-xl font-bold text-white mb-1 truncate">
+                        {user.name}
+                      </h3>
+                      <p className="text-white/60 text-sm flex items-center">
+                        <MapPin className="w-4 h-4 mr-1 flex-shrink-0" />
+                        NIK: {user.nik}
+                      </p>
+                    </div>
+
+                    {/* Department & Shift Tags */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow-lg">
+                        {user.department}
+                      </span>
+                      <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow-lg flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        Shift {user.shift}
+                      </span>
+                    </div>
+
+                    {/* Contact Section */}
+                    <div className="flex items-center justify-between pt-4 border-t border-white/20">
+                      <div className="flex items-center text-white/80">
+                        <Phone className="w-4 h-4 mr-2" />
+                        <span className="text-sm">WhatsApp</span>
+                      </div>
+                      <button
+                        className="bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white px-4 py-2 rounded-xl font-medium transition-all duration-300 transform hover:scale-105 shadow-lg text-sm flex items-center"
+                        onClick={() => openWhatsApp(user.phone)}
+                        aria-label="Chat di WhatsApp"
+                      >
+                        <FaWhatsapp className="w-4 h-4 mr-2" />
+                        Chat
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Empty State */}
+            {users.length === 0 && (
+              <div className="text-center py-16">
+                <div className="bg-white/10 backdrop-blur-lg rounded-3xl p-8 inline-block border border-white/20">
+                  <Users className="w-16 h-16 text-white/60 mx-auto mb-4" />
+                  <p className="text-white/80 text-lg">Tidak ada data PIC tersedia</p>
                 </div>
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
