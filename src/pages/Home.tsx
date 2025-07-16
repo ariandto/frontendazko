@@ -365,14 +365,7 @@ function Home() {
                   className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
                 >
                   <RotateCcw className="w-5 h-5" />
-                  <span>Cari Ulang</span>
-                </button>
-                <button
-                  onClick={() => setData([])}
-                  className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
-                >
-                  <XCircle className="w-5 h-5" />
-                  <span>Tutup Hasil</span>
+                  <span>Reset</span>
                 </button>
               </div>
             )}
