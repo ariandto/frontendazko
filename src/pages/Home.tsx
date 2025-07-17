@@ -320,7 +320,7 @@ function Home() {
           href="https://ariandto.pro"
           target="_blank"
           rel="noopener noreferrer"
-          className="font-bold text-rose-600 hover:underline hover:text-red-700 transition"
+          className="text-blue-500 hover:underline hover:text-red-700 transition"
         >
           Budi Ariyanto
         </a>
