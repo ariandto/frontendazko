@@ -388,7 +388,7 @@ function Home() {
       </span>
     </div>
   </footer>
-      ;
+      );
     </div>
   );
 }
