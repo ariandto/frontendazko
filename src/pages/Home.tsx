@@ -311,6 +311,17 @@ function Home() {
     setHasSearched(false);
   };
 
+  const Footer = () => (
+  <footer className="w-full mt-10 pb-6">
+    <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
+      <span>
+        &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
+        <span className="font-bold text-rose-600">Budi Ariyanto</span>
+      </span>
+    </div>
+  </footer>
+);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100">
       {loading && <LoadingScreen />}
@@ -379,6 +390,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
