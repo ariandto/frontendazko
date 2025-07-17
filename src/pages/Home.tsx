@@ -311,12 +311,19 @@ function Home() {
     setHasSearched(false);
   };
 
-  const Footer = () => (
+ const Footer = () => (
   <footer className="w-full mt-10 pb-6">
     <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
       <span>
         &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
-        <span className="font-bold text-rose-600">Budi Ariyanto</span>
+        <a
+          href="https://ariandto.pro"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-bold text-rose-600 hover:underline hover:text-red-700 transition"
+        >
+          Budi Ariyanto
+        </a>
       </span>
     </div>
   </footer>
