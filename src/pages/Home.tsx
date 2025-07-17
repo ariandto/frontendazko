@@ -379,16 +379,6 @@ function Home() {
           </div>
         </div>
       </div>
-  const Footer = () => (
-  <footer className="w-full mt-10 pb-6">
-    <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
-      <span>
-        &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
-        <span className="font-bold text-rose-600">Budi Ariyanto</span>
-      </span>
-    </div>
-  </footer>
-);
     </div>
   );
 }
