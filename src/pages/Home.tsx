@@ -379,7 +379,7 @@ function Home() {
           </div>
         </div>
       </div>
-      const Footer = () => (
+  const Footer = () => (
   <footer className="w-full mt-10 pb-6">
     <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
       <span>
@@ -388,7 +388,7 @@ function Home() {
       </span>
     </div>
   </footer>
-      );
+);
     </div>
   );
 }
