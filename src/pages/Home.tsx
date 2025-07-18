@@ -159,11 +159,11 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
         </div>
         <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-sm">
           <div className="text-gray-500">No Order:</div>
-          <div
-  className="font-semibold text-red-600 truncate cursor-pointer"
-  title={item.noOrder} // ← tampilkan full saat hover
+      <div
+  className="font-medium text-xs sm:text-sm text-red-600 break-words"
+  title={item.noOrder}
 >
-  {typeof item.noOrder === "string" ? item.noOrder.slice(-16) : "—"}
+  {item.noOrder}
 </div>
 
           <div className="text-gray-500">Kode Store:</div>
