@@ -163,7 +163,7 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
   className="font-semibold text-red-600 truncate cursor-pointer"
   title={item.noOrder} // ← tampilkan full saat hover
 >
-  {item.noOrder.slice(-16)} {/* tampilkan 17 karakter terakhir */}
+  {typeof item.noOrder === "string" ? item.noOrder.slice(-16) : "—"}
 </div>
 
           <div className="text-gray-500">Kode Store:</div>
