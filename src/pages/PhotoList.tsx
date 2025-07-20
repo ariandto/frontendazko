@@ -14,12 +14,6 @@ interface User {
   phone: string;
 }
 
-// Urutan shift
-const SHIFT_ORDER: Record<string, number> = {
-  Pagi: 0,
-  Siang: 1,
-  Malam: 2,
-};
 
 // Fungsi untuk cek apakah user sedang dalam jam kerja shift-nya
 const isWithinShift = (shift: string): boolean => {
@@ -148,7 +142,7 @@ export default function PhotoList() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {users.map((user, index) => {
+              {users.map((user) => {
                 const isActive = isWithinShift(user.shift);
 
                 return (
