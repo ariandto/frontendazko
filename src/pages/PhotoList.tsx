@@ -14,57 +14,37 @@ interface User {
   phone: string;
 }
 
-
-// Fungsi untuk cek apakah user sedang dalam jam kerja shift-nya
-const isWithinShift = (shift: string): boolean => {
-  const now = new Date();
-  const hour = now.getHours();
-
-  switch (shift) {
-    case "Pagi":
-      return hour >= 7 && hour < 15;
-    case "Siang":
-      return hour >= 15 && hour < 23;
-    case "Malam":
-      return hour >= 23 || hour < 7;
-    default:
-      return false;
-  }
-};
-
 export default function PhotoList() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-
   const extractStartHour = (shiftString: string): number => {
-  const match = shiftString.match(/(\d{2}):(\d{2})/);
-  if (match) {
-    return parseInt(match[1]) * 60 + parseInt(match[2]); // konversi ke menit
-  }
-  return 9999; // fallback besar agar taruh di akhir
-};
+    const match = shiftString.match(/(\d{2}):(\d{2})/);
+    if (match) {
+      return parseInt(match[1]) * 60 + parseInt(match[2]);
+    }
+    return 9999;
+  };
 
   const fetchUsers = async () => {
-  try {
-    setLoading(true);
-    const response = await fetch(API_USERS);
-    if (!response.ok) throw new Error("Failed to fetch users");
-    const data: User[] = await response.json();
+    try {
+      setLoading(true);
+      const response = await fetch(API_USERS);
+      if (!response.ok) throw new Error("Failed to fetch users");
+      const data: User[] = await response.json();
 
-    // Urutkan berdasarkan waktu mulai shift (misalnya 07:00, 08:00, 15:20, dst)
-    const sortedUsers = data.sort(
-      (a, b) => extractStartHour(a.shift) - extractStartHour(b.shift)
-    );
+      const sortedUsers = data.sort(
+        (a, b) => extractStartHour(a.shift) - extractStartHour(b.shift)
+      );
 
-    setUsers(sortedUsers);
-  } catch (err) {
-    setError("Gagal memuat data pengguna");
-  } finally {
-    setLoading(false);
-  }
-};
+      setUsers(sortedUsers);
+    } catch (err) {
+      setError("Gagal memuat data pengguna");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchUsers();
@@ -142,73 +122,60 @@ export default function PhotoList() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
-              {users.map((user) => {
-                const isActive = isWithinShift(user.shift);
+              {users.map((user) => (
+                <div
+                  key={user.id}
+                  className="group bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 hover:border-white/40 transition hover:scale-105 shadow-lg"
+                >
+                  <div className="relative p-4 sm:p-6 pt-6">
+                    <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
+                      <img
+                        src={`${API_URL}/${user.photo}`}
+                        alt={user.name}
+                        onError={(e) => {
+                          e.currentTarget.src = "https://via.placeholder.com/400";
+                        }}
+                        className="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition duration-300 shadow-2xl"
+                      />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
 
-                return (
-                  <div
-                    key={user.id}
-                    className="group bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 hover:border-white/40 transition hover:scale-105 shadow-lg"
-                  >
-                    <div className="relative p-4 sm:p-6 pt-6">
-                      <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
-                        <img
-                          src={`${API_URL}/${user.photo}`}
-                          alt={user.name}
-                          onError={(e) => {
-                            e.currentTarget.src = "https://via.placeholder.com/400";
-                          }}
-                          className="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition duration-300 shadow-2xl"
-                        />
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                        <button
-                          className={`absolute -bottom-2 -right-2 text-white p-3 rounded-full border-2 border-white shadow-lg transition ${
-                            isActive
-                              ? "bg-green-500 hover:bg-green-600 hover:scale-110 opacity-0 group-hover:opacity-100"
-                              : "bg-gray-400 cursor-not-allowed opacity-50"
-                          }`}
-                          onClick={() => isActive && openWhatsApp(user.phone)}
-                          disabled={!isActive}
-                          aria-label="Chat di WhatsApp"
-                        >
-                          <FaWhatsapp className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="px-4 sm:px-6 pb-4 text-center">
-                      <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{user.name}</h3>
-
-                      <div className="flex flex-wrap justify-center gap-2 mb-4">
-                        <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow">
-                          {user.department}
-                        </span>
-                        <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow flex items-center">
-                          <Clock className="w-3 h-3 mr-1" />
-                          Shift {user.shift}
-                        </span>
-                      </div>
-
-                      <div className="pt-4 border-t border-white/20 flex justify-center">
-                        <button
-                          className={`px-6 py-3 rounded-2xl text-sm flex items-center font-medium shadow-lg transition ${
-                            isActive
-                              ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 hover:scale-105"
-                              : "bg-gray-400 text-white/70 cursor-not-allowed"
-                          }`}
-                          onClick={() => isActive && openWhatsApp(user.phone)}
-{/*                           disabled={!isActive} */}
-                        >
-                          <FaWhatsapp className="w-5 h-5 mr-2" />
-                          Chat
-                        </button>
-                      </div>
+                      <button
+                        className="absolute -bottom-2 -right-2 text-white p-3 rounded-full border-2 border-white shadow-lg transition bg-green-500 hover:bg-green-600 hover:scale-110 opacity-0 group-hover:opacity-100"
+                        onClick={() => openWhatsApp(user.phone)}
+                        aria-label="Chat di WhatsApp"
+                      >
+                        <FaWhatsapp className="w-4 h-4" />
+                      </button>
                     </div>
                   </div>
-                );
-              })}
+
+                  <div className="px-4 sm:px-6 pb-4 text-center">
+                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{user.name}</h3>
+
+                    <div className="flex flex-wrap justify-center gap-2 mb-4">
+                      <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow">
+                        {user.department}
+                      </span>
+                      <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow flex items-center">
+                        <Clock className="w-3 h-3 mr-1" />
+                        Shift {user.shift}
+                      </span>
+                    </div>
+
+                    <div className="pt-4 border-t border-white/20 flex justify-center">
+                      <button
+                        className="px-6 py-3 rounded-2xl text-sm flex items-center font-medium shadow-lg transition bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 hover:scale-105"
+                        onClick={() => openWhatsApp(user.phone)}
+                      >
+                        <FaWhatsapp className="w-5 h-5 mr-2" />
+                        Chat
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
+
           </div>
         </div>
       </div>
