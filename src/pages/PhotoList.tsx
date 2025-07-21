@@ -198,7 +198,7 @@ export default function PhotoList() {
                               : "bg-gray-400 text-white/70 cursor-not-allowed"
                           }`}
                           onClick={() => isActive && openWhatsApp(user.phone)}
-                          disabled={!isActive}
+{/*                           disabled={!isActive} */}
                         >
                           <FaWhatsapp className="w-5 h-5 mr-2" />
                           Chat
