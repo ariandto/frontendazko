@@ -11,12 +11,16 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo & Title */}
-          <div className="flex items-center gap-2">
-            <img src={azkologo} alt="Azko Logo" className="w-10 h-10 object-contain" />
+          <Link to="/" className="flex items-center gap-2">
+            <img
+              src={azkologo}
+              alt="Azko Logo"
+              className="w-10 h-10 object-contain cursor-pointer"
+            />
             <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
               Lacak Pengiriman Azko
             </span>
-          </div>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
