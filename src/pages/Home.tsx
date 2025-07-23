@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import azko from "../assets/azko.png";
 import Navigation from "./Navigation";
+import { Helmet } from "react-helmet";
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
@@ -288,77 +289,95 @@ function Home() {
   </footer>
 );
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100">
-      {loading && <LoadingScreen />}
-      {notification && <Notification message={notification.message} type={notification.type} />}
-      <Navigation />
+return (
+  <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100">
+    <Helmet>
+      <title>Beranda - Lacak Pengiriman Azko</title>
+      <meta
+        name="description"
+        content="Lacak status pengiriman barang Anda dengan mudah dan cepat menggunakan layanan Azko."
+      />
+      <meta property="og:title" content="Beranda - Lacak Pengiriman Azko" />
+      <meta
+        property="og:description"
+        content="Cek status pengiriman barang Anda secara real-time dengan platform tracking Azko."
+      />
+      <meta property="og:type" content="website" />
+    </Helmet>
 
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/4 w-40 h-40 sm:w-72 sm:h-72 bg-rose-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-40 h-40 sm:w-72 sm:h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-2000"></div>
-      </div>
-      <div className="relative z-10 pt-20 px-2 sm:px-4 md:px-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3">
-              <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
-                Lacak Pengiriman
-              </span>
-            </h1>
-            <div className="flex items-center justify-center gap-3 mt-2">
-              <p className="text-base sm:text-xl text-gray-600">
-                Cari dan lacak status pengiriman Anda dengan mudah dan cepat
-              </p>
-              <img src={azko} alt="Mobil Azko" className="w-12 sm:w-16 h-auto animate-bounce" />
-            </div>
-          </div>
-          <div className="bg-white/40 backdrop-blur-lg rounded-3xl p-4 sm:p-8 shadow-xl border border-white/20 mb-8">
-            <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
-          </div>
-          <div className="space-y-5">
-            {hasSearched && !loading && data.length === 0 ? (
-              <div className="text-center py-10">
-                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                  <Search className="w-10 h-10 text-gray-400" />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-1">
-                  Data tidak ditemukan
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Silakan periksa kembali nomor order atau nomor receive dan pastikan tidak ada spasi.
-                </p>
-              </div>
-            ) : (
-              data.map((item, index) => (
-                <ResultCard key={index} item={item} delay={index * 0.08} />
-              ))
-            )}
-            {data.length > 0 && (
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mt-7">
-                <button
-                  onClick={handleReset}
-                  className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
-                >
-                  <RotateCcw className="w-5 h-5" />
-                  <span>Reset</span>
-                </button>
-                <button
-                  onClick={() => setData([])}
-                  className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
-                >
-                  <XCircle className="w-5 h-5" />
-                  <span>Tutup Hasil</span>
-                </button>
-              </div>
-            )}
+    {loading && <LoadingScreen />}
+    {notification && <Notification message={notification.message} type={notification.type} />}
+    <Navigation />
+
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
+      <div className="absolute top-1/3 right-1/4 w-40 h-40 sm:w-72 sm:h-72 bg-rose-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
+      <div className="absolute bottom-1/4 left-1/3 w-40 h-40 sm:w-72 sm:h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-2000"></div>
+    </div>
+
+    <div className="relative z-10 pt-20 px-2 sm:px-4 md:px-8">
+      <div className="max-w-2xl mx-auto">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+            <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
+              Lacak Pengiriman
+            </span>
+          </h1>
+          <div className="flex items-center justify-center gap-3 mt-2">
+            <p className="text-base sm:text-xl text-gray-600">
+              Cari dan lacak status pengiriman Anda dengan mudah dan cepat
+            </p>
+            <img src={azko} alt="Mobil Azko" className="w-12 sm:w-16 h-auto animate-bounce" />
           </div>
         </div>
-      </div>
-      <Footer />
-    </div>
-  );
-}
 
+        <div className="bg-white/40 backdrop-blur-lg rounded-3xl p-4 sm:p-8 shadow-xl border border-white/20 mb-8">
+          <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+        </div>
+
+        <div className="space-y-5">
+          {hasSearched && !loading && data.length === 0 ? (
+            <div className="text-center py-10">
+              <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                <Search className="w-10 h-10 text-gray-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-gray-700 mb-1">
+                Data tidak ditemukan
+              </h3>
+              <p className="text-gray-500 text-sm">
+                Silakan periksa kembali nomor order atau nomor receive dan pastikan tidak ada spasi.
+              </p>
+            </div>
+          ) : (
+            data.map((item, index) => (
+              <ResultCard key={index} item={item} delay={index * 0.08} />
+            ))
+          )}
+
+          {data.length > 0 && (
+            <div className="flex flex-col sm:flex-row gap-3 justify-center mt-7">
+              <button
+                onClick={handleReset}
+                className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
+              >
+                <RotateCcw className="w-5 h-5" />
+                <span>Reset</span>
+              </button>
+              <button
+                onClick={() => setData([])}
+                className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
+              >
+                <XCircle className="w-5 h-5" />
+                <span>Tutup Hasil</span>
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+  </div>
+);
+}
 export default Home;

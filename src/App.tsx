@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import UploadForm from "./pages/UploadForm";
-import PhotoList from "./pages/PhotoList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Info from "./pages/Info";
 import Form from "./pages/Form";
+import PicList from "./pages/PicList";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<UploadForm />} />
-          <Route path="/listpic" element={<PhotoList />} />
+          <Route path="/listpic" element={<PicList />} />
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
         </Routes>

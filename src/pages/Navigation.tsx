@@ -1,37 +1,53 @@
 // src/components/Navigation.tsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import azkologo from "../assets/azkologo.png";
 import { Home, Users, FileText, Info, Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const getPageTitle = () => {
+    switch (location.pathname) {
+      case "/":
+        return "Home";
+      case "/listpic":
+        return "Daftar PIC";
+      case "/form-request":
+        return "Form Request";
+      case "/info":
+        return "Informasi Penting"
+      default:
+        return "Lacak Pengiriman";
+    }
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-red-400 via-red-400 to-rose-500/40 backdrop-blur-md border-b border-white/50 shadow-sm text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo & Title */}
+          {/* Logo & Dynamic Title */}
           <Link to="/" className="flex items-center gap-2">
             <img
               src={azkologo}
               alt="Azko Logo"
               className="w-10 h-10 object-contain cursor-pointer"
             />
-            {/* <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-50 bg-clip-text text-transparent">
-              Lacak Pengiriman Azko
-            </span> */}
+            <span className="text-lg font-bold text-white">
+              {getPageTitle()}
+            </span>
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/listpic" className="flex items-center gap-1 hover:text-gray-500 font-semibold hover:underline">
+            <Link to="/listpic" className="flex items-center gap-1 hover:text-gray-100 font-semibold hover:underline">
               <Users className="w-5 h-5" /> PIC
             </Link>
-            <Link to="/form-request" className="flex items-center gap-1 hover:text-blue-500 font-medium transition-all">
+            <Link to="/form-request" className="flex items-center gap-1 hover:text-blue-200 font-medium transition-all">
               <FileText className="w-5 h-5" /> Form Request
             </Link>
-            <Link to="/info" className="flex items-center gap-1 hover:text-green-500 font-medium transition-all">
+            <Link to="/info" className="flex items-center gap-1 hover:text-green-200 font-medium transition-all">
               <Info className="w-5 h-5" /> Info
             </Link>
           </div>

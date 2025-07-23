@@ -1,9 +1,14 @@
 // src/pages/Form.tsx
 import Navigation from "./Navigation";
+import { Helmet } from "react-helmet";
 
 const Form = () => {
   return (
     <>
+      <Helmet>
+        <title>Form Request Pengiriman Azko</title>
+        <meta name="description" content="Isi formulir request pengiriman untuk mengajukan permintaan pengiriman barang di Azko." />
+    </Helmet>
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-rose-100 to-pink-200 pt-20 pb-10 px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-8">

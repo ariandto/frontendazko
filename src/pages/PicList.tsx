@@ -4,6 +4,7 @@ import { Clock, Users, AlertTriangle, Loader } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "./Navigation";
 import { API_URL, API_USERS } from "../config/apiurl";
+import { Helmet } from "react-helmet";
 
 interface User {
   id: number;
@@ -14,7 +15,7 @@ interface User {
   phone: string;
 }
 
-export default function PhotoList() {
+export default function PicList() {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -88,6 +89,10 @@ export default function PhotoList() {
 
   return (
     <>
+      <Helmet>
+    <title>Daftar PIC - Azko</title>
+    <meta name="description" content="Lihat daftar Person in Charge (PIC) dari berbagai departemen dan shift di Azko." />
+  </Helmet>
       <Navigation />
       <div className="pt-16 min-h-screen bg-gradient-to-br from-red-400 via-red-600 to-red-500 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
