@@ -200,7 +200,7 @@ const LoadingScreen = () => (
   <div className="fixed inset-0 bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center z-50">
     <div className="text-center">
       <div className="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-3"></div>
-      <p className="text-base sm:text-lg font-semibold text-gray-700">Memuat...</p>
+      <p className="text-base sm:text-lg font-semibold text-gray-700">Tunggu Sebentar....</p>
     </div>
   </div>
 );
@@ -327,7 +327,7 @@ function Home() {
                   Data tidak ditemukan
                 </h3>
                 <p className="text-gray-500 text-sm">
-                  Silakan periksa kembali nomor order atau nomor receive, pastikan tidak ada spasi
+                  Silakan periksa kembali nomor order atau nomor receive dan pastikan tidak ada spasi.
                 </p>
               </div>
             ) : (
