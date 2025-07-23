@@ -75,13 +75,6 @@ export default function Navigation() {
               >
                 Info
               </Link>
-              <Link
-                to="/info"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-              Info
-              </Link>
               </div>
             </div>
           </div>
