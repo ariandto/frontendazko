@@ -26,7 +26,7 @@ export default function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <Link to="/listpic" className="flex items-center gap-1 hover:text-blue-400 font-semibold hover:underline">
-              <Users className="w-5 h-5 text-blue-600" /> PIC
+              <Users className="w-5 h-5" /> PIC
             </Link>
             <Link to="/form-request" className="flex items-center gap-1 hover:text-blue-500 font-medium transition-all">
               <FileText className="w-5 h-5" /> Form Request
