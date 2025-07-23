@@ -7,8 +7,10 @@ import {
   XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
-import Navigation from "./Navigation";
+import Navigation from "../layouts/Navigation";
 import { Helmet } from "react-helmet";
+import { API_VISIT } from "../config/apiurl";
+import Footer from "../layouts/Footer"
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
@@ -234,6 +236,28 @@ function Home() {
   const [notification, setNotification] = useState<{ message: string; type: string } | null>(null);
 
   useEffect(() => {
+  const postVisit = async () => {
+    try {
+      const res = await fetch(API_VISIT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+
+      const data = await res.json();
+      console.log("📌 Visit logged from Home:", data);
+    } catch (err) {
+      console.error("❌ Gagal kirim kunjungan:", err);
+    }
+  };
+
+  postVisit();
+}, []);
+
+
+  useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
@@ -271,23 +295,7 @@ function Home() {
     setHasSearched(false);
   };
 
- const Footer = () => (
-  <footer className="w-full mt-10 pb-6">
-    <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
-      <span>
-        &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
-        <a
-          href="https://ariandto.pro"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline hover:text-red-700 transition"
-        >
-          Budi Ariyanto
-        </a>
-      </span>
-    </div>
-  </footer>
-);
+ 
 
 return (
   <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100">

@@ -5,6 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import Info from "./pages/Info";
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
+import VisitorStats from "./pages/VisitorStats";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/listpic" element={<PicList />} />
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
+          <Route path="/visitor" element={<VisitorStats />} />
         </Routes>
       </Router>
     </GoogleOAuthProvider>

@@ -1,8 +1,32 @@
 // src/pages/Form.tsx
-import Navigation from "./Navigation";
+import Navigation from "../layouts/Navigation";
 import { Helmet } from "react-helmet";
+import { API_VISIT } from "../config/apiurl";
+import { useEffect } from "react";
 
 const Form = () => {
+
+  useEffect(() => {
+    const postVisit = async () => {
+      try {
+        const res = await fetch(API_VISIT, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        });
+  
+        const data = await res.json();
+        console.log("📌 Visit logged from Home:", data);
+      } catch (err) {
+        console.error("❌ Gagal kirim kunjungan:", err);
+      }
+    };
+  
+    postVisit();
+  }, []);
+
   return (
     <>
       <Helmet>

@@ -16,6 +16,8 @@ export default function Navigation() {
         return "Daftar PIC";
       case "/form-request":
         return "Form Request";
+      case "/visitor":
+        return "Riwayat Pengunjung";
       case "/info":
         return "Informasi Penting"
       default:

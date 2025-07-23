@@ -8,3 +8,4 @@ export const API_PHOTOS = `${API_URL}/api/photos`;
 
 export const API_VISIT = `${API_URL}/api/visit`; // ✅ untuk mencatat kunjungan IP
 export const API_VISITORS_COUNT = `${API_URL}/api/visitors/count`; // ✅ untuk ambil total hari ini
+export const API_VISITORS_VIEW = `${API_URL}/api/visitors/view`;
