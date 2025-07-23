@@ -1,9 +1,10 @@
+// import tetap
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { ArrowLeft, Loader, AlertTriangle, Clock, Users } from "lucide-react";
+import { Clock, Users, AlertTriangle, Loader } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "./Navigation";
 import { API_URL, API_USERS } from "../config/apiurl";
+import { Link } from "react-router-dom";
 
 interface User {
   id: number;
@@ -98,13 +99,7 @@ export default function PhotoList() {
         <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-6">
           <div className="max-w-7xl mx-auto">
             <div className="mb-8">
-              <Link
-                to="/"
-                className="inline-flex items-center mb-6 text-white/80 hover:text-white font-medium bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 hover:bg-white/20 transition"
-              >
-                <ArrowLeft className="mr-2 w-5 h-5" />
-                Kembali
-              </Link>
+              {/* Komponen "Kembali" telah dihapus */}
 
               <div className="text-center sm:text-left">
                 <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-200 bg-clip-text text-transparent mb-4">
