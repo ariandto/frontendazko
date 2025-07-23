@@ -7,7 +7,6 @@ import {
   XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
-import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 
 // WhatsApp Icon SVG
