@@ -11,6 +11,7 @@ import {
 import azko from "../assets/azko.png";
 import azkologo from "../assets/azkologo.png";
 import { Link } from "react-router-dom";
+import Navigation from "./Navigation";
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
@@ -47,45 +48,6 @@ interface DataItem {
   status: string;
 }
 
-// --- Komponen Navigation ---
-const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <img src={azkologo} alt="Azko Logo" className="w-9 h-9 object-contain" />
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
-              Lacak Pengiriman Azko
-            </span>
-          </div>
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/listpic" className="text-rose-600 font-semibold hover:underline text-base">PIC</Link>
-            <Link to="/info" className="text-gray-600 font-semibold hover:underline text-base">Info</Link>
-          </div>
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (<X className="w-6 h-6" />) : (<Menu className="w-6 h-6" />)}
-          </button>
-        </div>
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white/95 backdrop-blur border-b border-gray-200 shadow-lg">
-            <div className="px-4 py-2 space-y-1">
-              <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Beranda</Link>
-              <Link to="/listpic" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">PIC</Link>
-              <Link to="/request-form" className="block px-3 py-2 text-blue-500 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Request Form</Link>
-              <Link to="/info" className="block px-3 py-2 text-green-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Info</Link>
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-};
 
 // --- Helper WhatsApp ---
 function waLink(phone: string) {
