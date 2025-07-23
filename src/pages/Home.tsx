@@ -193,8 +193,8 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
           <Phone className="w-5 h-5 text-green-500" />
           <h3 className="text-lg font-bold text-gray-800">Kontak & PIC</h3>
         </div>
-        <ContactCard label="Driver" name={item.nameContact1} phone={item.contact1} />
-        <ContactCard label="Ast. Driver" name={item.nameContact2} phone={item.contact2} />
+        <ContactCard label="Driver DC" name={item.nameContact1} phone={item.contact1} />
+        <ContactCard label="Ast. Driver DC" name={item.nameContact2} phone={item.contact2} />
         <ContactCard label="PIC Hub 1" name={item.namePicHub1} phone={item.picHub1} />
         <ContactCard label="PIC Hub 2" name={item.namePicHub2} phone={item.picHub2} />
       </div>
