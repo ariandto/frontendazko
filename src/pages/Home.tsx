@@ -63,7 +63,7 @@ const Navigation = () => {
           </div>
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/listpic" className="text-rose-600 font-semibold hover:underline text-base">PIC</Link>
-            <Link to="/onprogress" className="text-gray-600 font-semibold hover:underline text-base"></Link>
+            <Link to="/info" className="text-gray-600 font-semibold hover:underline text-base">Info</Link>
           </div>
           <button
             className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
@@ -77,7 +77,7 @@ const Navigation = () => {
             <div className="px-4 py-2 space-y-1">
               <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Beranda</Link>
               <Link to="/listpic" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">PIC</Link>
-              <Link to="/onprogress" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Tentang</Link>
+              <Link to="/info" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Info</Link>
             </div>
           </div>
         )}
