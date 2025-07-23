@@ -77,7 +77,7 @@ const Navigation = () => {
             <div className="px-4 py-2 space-y-1">
               <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Beranda</Link>
               <Link to="/listpic" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">PIC</Link>
-              <Link to="/info" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Info</Link>
+              <Link to="/info" className="block px-3 py-2 text-green-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Info</Link>
             </div>
           </div>
         )}
