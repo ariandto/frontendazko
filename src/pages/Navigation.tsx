@@ -60,6 +60,13 @@ export default function Navigation() {
               >
                 PIC
               </Link>
+              <Link
+                to="/form-request"
+                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Form Request
+              </Link>
               <div className="px-4 py-4 space-y-2">
               <Link
                 to="/"

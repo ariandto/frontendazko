@@ -4,6 +4,7 @@ import UploadForm from "./pages/UploadForm";
 import PhotoList from "./pages/PhotoList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Info from "./pages/Info";
+import Form from "./pages/Form";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/upload" element={<UploadForm />} />
           <Route path="/listpic" element={<PhotoList />} />
           <Route path="/info" element={<Info />} />
+          <Route path="/form-request" element={<Form />} />
         </Routes>
       </Router>
     </GoogleOAuthProvider>
