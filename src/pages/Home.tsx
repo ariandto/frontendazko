@@ -2,24 +2,16 @@ import { useState, useEffect } from "react";
 import {
   Search,
   Package,
-  Menu,
-  X,
   Phone,
   RotateCcw,
   XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
-import azkologo from "../assets/azkologo.png";
-import { Link } from "react-router-dom";
+import Navigation from "./Navigation";
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
-  <svg
-    className={className}
-    viewBox="0 0 32 32"
-    fill="currentColor"
-    aria-hidden="true"
-  >
+  <svg className={className} viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
     <path
       d="M16.003 2.933c-7.23 0-13.07 5.84-13.07 13.07 0 2.315.603 4.573 1.745 6.553L2.33 29.07l6.719-2.188a13.03 13.03 0 006.954 1.995h.002c7.229 0 13.069-5.839 13.069-13.069s-5.84-13.07-13.07-13.07zm0 23.868a11.81 11.81 0 01-6.022-1.722l-.432-.258-3.994 1.301 1.305-3.89-.281-.447A11.804 11.804 0 014.2 16.003c0-6.51 5.293-11.803 11.803-11.803s11.803 5.293 11.803 11.803-5.293 11.803-11.803 11.803zm6.451-8.909c-.353-.177-2.084-1.028-2.407-1.144-.324-.12-.56-.177-.795.177-.232.353-.914 1.144-1.121 1.379-.207.232-.414.262-.767.088-.353-.177-1.49-.549-2.837-1.747-1.049-.936-1.758-2.09-1.963-2.44-.206-.354-.022-.544.155-.719.158-.157.353-.409.529-.612.177-.207.235-.353.353-.59.117-.236.06-.443-.03-.62-.088-.177-.797-1.923-1.092-2.64-.286-.688-.578-.594-.795-.605-.206-.009-.442-.011-.68-.011-.235 0-.619.088-.944.441-.323.353-1.234 1.206-1.234 2.941 0 1.735 1.266 3.414 1.442 3.652.177.236 2.496 3.817 6.048 5.206.845.288 1.504.461 2.019.589.847.215 1.618.184 2.23.112.681-.08 2.084-.853 2.378-1.677.294-.824.294-1.529.206-1.677-.088-.147-.324-.236-.677-.413z"
       fill="#25D366"
@@ -27,7 +19,7 @@ const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
   </svg>
 );
 
-// -- Tipe DataItem
+// Data structure
 interface DataItem {
   noOrder: string;
   kodeStore: string;
@@ -47,63 +39,27 @@ interface DataItem {
   status: string;
 }
 
-// --- Komponen Navigation ---
-const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex items-center space-x-2">
-            <img src={azkologo} alt="Azko Logo" className="w-9 h-9 object-contain" />
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
-              Lacak Pengiriman Azko
-            </span>
-          </div>
-          <div className="hidden md:flex items-center space-x-6">
-            <Link to="/listpic" className="text-rose-600 font-semibold hover:underline text-base">PIC</Link>
-            <Link to="/onprogress" className="text-gray-600 font-semibold hover:underline text-base">Tentang</Link>
-          </div>
-          <button
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (<X className="w-6 h-6" />) : (<Menu className="w-6 h-6" />)}
-          </button>
-        </div>
-        {isMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 right-0 bg-white/95 backdrop-blur border-b border-gray-200 shadow-lg">
-            <div className="px-4 py-2 space-y-1">
-              <Link to="/" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Beranda</Link>
-              <Link to="/listpic" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">PIC</Link>
-              <Link to="/onprogress" className="block px-3 py-2 text-gray-700 hover:text-rose-600 hover:bg-gray-50 rounded-lg transition">Tentang</Link>
-            </div>
-          </div>
-        )}
-      </div>
-    </nav>
-  );
-};
-
-// --- Helper WhatsApp ---
+// Utility
 function waLink(phone: string) {
   if (!phone) return "#";
-  let no = phone;
-  if (no.startsWith("0")) no = "62" + no.slice(1);
+  let no = phone.startsWith("0") ? "62" + phone.slice(1) : phone;
   return `https://wa.me/${no.replace(/[^0-9]/g, "")}`;
 }
 
-// --- ContactCard ---
-const ContactCard = ({
-  label,
-  name,
-  phone,
-}: {
-  label: string;
-  name: string;
-  phone: string;
-}) => {
+function parseDeliveryDate(noLC: string): string {
+  if (!noLC || noLC.length < 6) return "Tanggal tidak valid";
+  const tahun = "20" + noLC.slice(0, 2);
+  const bulan = noLC.slice(2, 4);
+  const tanggal = noLC.slice(4, 6);
+  const bulanNama: Record<string, string> = {
+    "01": "Jan", "02": "Feb", "03": "Mar", "04": "Apr", "05": "Mei", "06": "Jun",
+    "07": "Jul", "08": "Agust", "09": "Sept", "10": "Okt", "11": "Nov", "12": "Des",
+  };
+  return `${tanggal} ${bulanNama[bulan] || "Bulan Tidak Valid"} ${tahun}`;
+}
+
+// Subcomponents
+const ContactCard = ({ label, name, phone }: { label: string; name: string; phone: string }) => {
   if (!name && !phone) return null;
   return (
     <div className="flex items-center bg-white/70 border border-gray-100 rounded-xl px-3 py-2 mb-2 gap-2">
@@ -111,12 +67,7 @@ const ContactCard = ({
       <div className="flex-1 min-w-0">
         <div className="font-semibold text-sm truncate text-gray-700">{name}</div>
         {phone && (
-          <a
-            href={waLink(phone)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-green-600 hover:underline text-sm"
-          >
+          <a href={waLink(phone)} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-green-600 hover:underline text-sm">
             <WhatsAppIcon className="w-4 h-4 mr-1" />
             <span className="sr-only">{phone}</span>
           </a>
@@ -126,32 +77,9 @@ const ContactCard = ({
   );
 };
 
-function parseDeliveryDate(noLC: string): string {
-  if (!noLC || noLC.length < 6) return "Tanggal tidak valid";
-
-  const tahun = "20" + noLC.slice(0, 2); // 25
-  const bulan = noLC.slice(2, 4); // 07
-  const tanggal = noLC.slice(4, 6); // 13
-
-  const bulanNama: Record<string, string> = {
-    "01": "Jan", "02": "Feb", "03": "Mar",
-    "04": "Apr", "05": "Mei", "06": "Jun",
-    "07": "Jul", "08": "Agust", "09": "Sept",
-    "10": "Okt", "11": "Nov", "12": "Des",
-  };
-
-  return `${tanggal} ${bulanNama[bulan] || "Bulan Tidak Valid"} ${tahun}`;
-}
-
-
-// --- ResultCard ---
 const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
-  <div
-    className="bg-white/90 backdrop-blur rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/70"
-    style={{ animationDelay: `${delay}s` }}
-  >
+  <div className="bg-white/90 backdrop-blur rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200/70" style={{ animationDelay: `${delay}s` }}>
     <div className="flex flex-col md:flex-row gap-6">
-      {/* Detail */}
       <div className="flex-1 space-y-4">
         <div className="flex items-center gap-2 mb-2">
           <Package className="w-5 h-5 text-red-500" />
@@ -159,13 +87,7 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
         </div>
         <div className="grid grid-cols-2 gap-x-2 gap-y-1 text-sm">
           <div className="text-gray-500">No Order:</div>
-      <div
-  className="font-medium text-xs sm:text-sm text-red-600 break-words"
-  title={item.noOrder}
->
-  {item.noOrder}
-</div>
-
+          <div className="font-medium text-xs sm:text-sm text-red-600 break-words" title={item.noOrder}>{item.noOrder}</div>
           <div className="text-gray-500">Kode Store:</div>
           <div className="font-semibold">{item.kodeStore}</div>
           <div className="text-gray-500">Store Booking:</div>
@@ -180,14 +102,10 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
           <div className="font-semibold text-green-600">{item.delivery}</div>
           <div className="text-gray-500">Via Hub:</div>
           <div className="font-semibold">{item.viaHub}</div>
-
           <div className="text-gray-500">Status:</div>
-<div className={`font-semibold ${item.status === "Delivered" ? "text-green-600" : "text-yellow-600"}`}>
-  {item.status}
-</div>
+          <div className={`font-semibold ${item.status === "Delivered" ? "text-green-600" : "text-yellow-600"}`}>{item.status}</div>
         </div>
       </div>
-      {/* Kontak */}
       <div className="flex-1">
         <div className="flex items-center gap-2 mb-2">
           <Phone className="w-5 h-5 text-green-500" />
@@ -202,27 +120,14 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
   </div>
 );
 
-// --- SearchBar ---
-const SearchBar = ({
-  query,
-  setQuery,
-  onSearch,
-}: {
-  query: string;
-  setQuery: (v: string) => void;
-  onSearch: () => void;
-}) => {
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") onSearch();
-  };
-
+const SearchBar = ({ query, setQuery, onSearch }: { query: string; setQuery: (v: string) => void; onSearch: () => void }) => {
   return (
     <div className="relative mb-6">
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        onKeyDown={handleKeyPress}
+        onKeyDown={(e) => e.key === "Enter" && onSearch()}
         placeholder="Masukkan nomor order atau nomor receive..."
         className="w-full px-5 py-3 pl-12 text-base sm:text-lg border-2 border-gray-200 rounded-2xl focus:border-red-500 focus:outline-none transition bg-white/70 backdrop-blur"
       />
@@ -236,7 +141,6 @@ const SearchBar = ({
   );
 };
 
-// --- LoadingScreen ---
 const LoadingScreen = () => (
   <div className="fixed inset-0 bg-gradient-to-br from-red-100 to-rose-100 flex items-center justify-center z-50">
     <div className="text-center">
@@ -246,18 +150,12 @@ const LoadingScreen = () => (
   </div>
 );
 
-// --- Notification ---
-const Notification = ({
-  message,
-  type,
-}: {
-  message: string;
-  type: string;
-}) => {
-  let bgColor = "bg-gray-500";
-  if (type === "success") bgColor = "bg-green-500";
-  if (type === "error") bgColor = "bg-red-600";
-  if (type === "warning") bgColor = "bg-yellow-400";
+const Notification = ({ message, type }: { message: string; type: string }) => {
+  const bgColor = {
+    success: "bg-green-500",
+    error: "bg-red-600",
+    warning: "bg-yellow-400",
+  }[type] || "bg-gray-500";
 
   return (
     <div className={`fixed top-20 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 animate-pulse`}>
@@ -265,6 +163,17 @@ const Notification = ({
     </div>
   );
 };
+
+const Footer = () => (
+  <footer className="w-full mt-10 pb-6">
+    <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
+      &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
+      <a href="https://ariandto.pro" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline hover:text-red-700 transition">
+        Budi Ariyanto
+      </a>
+    </div>
+  </footer>
+);
 
 function Home() {
   const [query, setQuery] = useState("");
@@ -292,7 +201,7 @@ function Home() {
       const result = await res.json();
       setData(result);
       showNotification("Data berhasil ditemukan!", "success");
-    } catch (err) {
+    } catch {
       setData([]);
       showNotification("Terjadi kesalahan saat mencari data.", "error");
     } finally {
@@ -311,84 +220,60 @@ function Home() {
     setHasSearched(false);
   };
 
- const Footer = () => (
-  <footer className="w-full mt-10 pb-6">
-    <div className="max-w-2xl mx-auto text-center text-xs sm:text-sm text-gray-500">
-      <span>
-        &copy; {new Date().getFullYear()} Lacak Pengiriman Azko. Dibuat oleh{" "}
-        <a
-          href="https://ariandto.pro"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline hover:text-red-700 transition"
-        >
-          Budi Ariyanto
-        </a>
-      </span>
-    </div>
-  </footer>
-);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-red-100 via-red-50 to-rose-100">
       {loading && <LoadingScreen />}
       {notification && <Notification message={notification.message} type={notification.type} />}
       <Navigation />
-
+      {/* Background blobs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
         <div className="absolute top-1/3 right-1/4 w-40 h-40 sm:w-72 sm:h-72 bg-rose-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
         <div className="absolute bottom-1/4 left-1/3 w-40 h-40 sm:w-72 sm:h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-2000"></div>
       </div>
+
       <div className="relative z-10 pt-20 px-2 sm:px-4 md:px-8">
         <div className="max-w-2xl mx-auto">
+          {/* Title */}
           <div className="text-center mb-10">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3">
-              <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">
-                Lacak Pengiriman
-              </span>
+              <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">Lacak Pengiriman</span>
             </h1>
             <div className="flex items-center justify-center gap-3 mt-2">
-              <p className="text-base sm:text-xl text-gray-600">
-                Cari dan lacak status pengiriman Anda dengan mudah dan cepat
-              </p>
+              <p className="text-base sm:text-xl text-gray-600">Cari dan lacak status pengiriman Anda dengan mudah dan cepat</p>
               <img src={azko} alt="Mobil Azko" className="w-12 sm:w-16 h-auto animate-bounce" />
             </div>
           </div>
+
+          {/* Search Form */}
           <div className="bg-white/40 backdrop-blur-lg rounded-3xl p-4 sm:p-8 shadow-xl border border-white/20 mb-8">
             <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
           </div>
+
+          {/* Result Section */}
           <div className="space-y-5">
             {hasSearched && !loading && data.length === 0 ? (
               <div className="text-center py-10">
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <Search className="w-10 h-10 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-1">
-                  Data tidak ditemukan
-                </h3>
-                <p className="text-gray-500 text-sm">
-                  Silakan periksa kembali nomor order atau nomor receive, pastikan tidak ada spasi
-                </p>
+                <h3 className="text-lg font-semibold text-gray-700 mb-1">Data tidak ditemukan</h3>
+                <p className="text-gray-500 text-sm">Silakan periksa kembali nomor order atau nomor receive, pastikan tidak ada spasi</p>
               </div>
             ) : (
               data.map((item, index) => (
                 <ResultCard key={index} item={item} delay={index * 0.08} />
               ))
             )}
+
+            {/* Action Buttons */}
             {data.length > 0 && (
               <div className="flex flex-col sm:flex-row gap-3 justify-center mt-7">
-                <button
-                  onClick={handleReset}
-                  className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
-                >
+                <button onClick={handleReset} className="flex items-center justify-center gap-2 bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg">
                   <RotateCcw className="w-5 h-5" />
                   <span>Reset</span>
                 </button>
-                <button
-                  onClick={() => setData([])}
-                  className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg"
-                >
+                <button onClick={() => setData([])} className="flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white px-6 py-3 rounded-xl transition font-semibold shadow-md hover:shadow-lg">
                   <XCircle className="w-5 h-5" />
                   <span>Tutup Hasil</span>
                 </button>
