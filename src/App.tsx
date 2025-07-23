@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<UploadForm />} />
           <Route path="/listpic" element={<PhotoList />} />
-          <Route path="/onprogress" element={<Info />} />
+          <Route path="/info" element={<Info />} />
         </Routes>
       </Router>
     </GoogleOAuthProvider>
