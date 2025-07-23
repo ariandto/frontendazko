@@ -4,7 +4,6 @@ import { Clock, Users, AlertTriangle, Loader } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "./Navigation";
 import { API_URL, API_USERS } from "../config/apiurl";
-import { Link } from "react-router-dom";
 
 interface User {
   id: number;
