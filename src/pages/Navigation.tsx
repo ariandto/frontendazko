@@ -60,13 +60,22 @@ export default function Navigation() {
               >
                 PIC
               </Link>
+              <div className="px-4 py-4 space-y-2">
               <Link
-                to="/info"
-                className="block text-green-600 font-medium hover:text-rose-600 transition-colors"
+                to="/"
+                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Info
               </Link>
+              <Link
+                to="/info"
+                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+              Info
+              </Link>
+              </div>
             </div>
           </div>
         )}
