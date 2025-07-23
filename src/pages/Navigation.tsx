@@ -18,9 +18,9 @@ export default function Navigation() {
               alt="Azko Logo"
               className="w-10 h-10 object-contain cursor-pointer"
             />
-            <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-50 bg-clip-text text-transparent">
+            {/* <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-50 bg-clip-text text-transparent">
               Lacak Pengiriman Azko
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop Menu */}

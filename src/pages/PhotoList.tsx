@@ -63,7 +63,7 @@ export default function PhotoList() {
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-500 via-orange-600 to-red-600 p-4">
         <div className="bg-white/10 p-8 rounded-3xl backdrop-blur-lg text-center border border-white/20 shadow-2xl">
           <Loader className="animate-spin text-white w-12 h-12 mx-auto mb-4" />
-          <p className="text-white text-lg font-medium">Memuat data pengguna...</p>
+          <p className="text-white text-lg font-medium">Memuat data PIC...</p>
         </div>
       </div>
     );
