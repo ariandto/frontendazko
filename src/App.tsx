@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import UploadForm from "./pages/UploadForm";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Info from "./pages/Info";
+import Info from "./pages/Info"
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
 import VisitorStats from "./pages/VisitorStats";

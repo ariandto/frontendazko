@@ -1,38 +1,42 @@
-import { Link } from "react-router-dom";
-import Navigation from "../layouts/Navigation";
-import { Helmet } from "react-helmet";
-import { API_VISIT } from "../config/apiurl";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
-const Info = () => {
+import Navigation from "../layouts/Navigation";
+import { API_VISIT } from "../config/apiurl";
 
+import { Info } from "lucide-react";
+
+// Fungsi untuk mencatat kunjungan halaman
+const postVisit = async () => {
+  try {
+    const res = await fetch(API_VISIT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({}),
+    });
+    const data = await res.json();
+    console.log("📌 Visit logged from Info:", data);
+  } catch (err) {
+    console.error("❌ Gagal kirim kunjungan:", err);
+  }
+};
+
+const InfoPage = () => {
   useEffect(() => {
-  const postVisit = async () => {
-    try {
-      const res = await fetch(API_VISIT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({}),
-      });
-
-      const data = await res.json();
-      console.log("📌 Visit logged from Home:", data);
-    } catch (err) {
-      console.error("❌ Gagal kirim kunjungan:", err);
-    }
-  };
-
-  postVisit();
-}, []);
+    postVisit();
+  }, []);
 
   return (
     <>
-     <Helmet>
+      <Helmet>
         <title>Informasi Penting - Azko</title>
-        <meta name="description" content="Informasi penting mengenai TUGU dan PERCEPATAN di Azko. Pastikan semua prosedur diikuti dengan benar." />
+        <meta
+          name="description"
+          content="Informasi penting mengenai TUGU dan PERCEPATAN di Azko. Pastikan semua prosedur diikuti dengan benar."
+        />
       </Helmet>
+
       <Navigation />
 
       <div className="min-h-screen bg-gradient-to-br from-rose-100 to-pink-200 flex items-center justify-center p-4 sm:p-6 pt-20">
@@ -40,13 +44,13 @@ const Info = () => {
           <h1 className="text-2xl sm:text-3xl font-bold text-rose-600">
             Informasi Penting: TUGU & PERCEPATAN
           </h1>
+
           <div className="space-y-4 text-gray-800 text-sm sm:text-base leading-relaxed">
+            {/* Bagian TUGU */}
             <div>
               <h2 className="font-semibold text-rose-500">TUGU</h2>
               <ul className="list-disc list-inside ml-4">
-                <li>
-                  Pastikan <strong>berita acara</strong> dikirim melalui email.
-                </li>
+                <li>Pastikan <strong>berita acara</strong> dikirim melalui email.</li>
                 <li>
                   <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdeRLJKiPsOgKaumUHDXBI6lLlGzQZqN8Zpw-DMFr59xeVQKA/viewform?pli=1"
@@ -55,46 +59,55 @@ const Info = () => {
                     className="text-blue-600 font-semibold underline hover:text-blue-800 transition"
                   >
                     Input Google Formulir
-                  </a>
-                  &nbsp;dengan benar.
+                  </a>{" "}
+                  dengan benar.
                 </li>
-
                 <li>
-                  Barang yang <strong>rusak</strong> harus dipacking kembali
-                  dengan rapi.
+                  Barang yang <strong>rusak</strong> harus dipacking kembali dengan rapi.
                 </li>
               </ul>
             </div>
 
+            {/* Bagian PERCEPATAN */}
             <div>
               <h2 className="font-semibold text-rose-500">PERCEPATAN</h2>
               <ul className="list-disc list-inside ml-4">
                 <li>
-                  Wajib mendapatkan <strong>approve</strong> dari{" "}
-                  <strong>Pak Yusuf</strong>, selaku Manager DC.
+                  Wajib mendapatkan <strong>approve</strong> dari <strong>Pak Yusuf</strong>, selaku Manager DC.
                 </li>
                 <li>
-                  Setelah approve, segera
+                  Setelah approve, segera{" "}
                   <a
                     href="https://docs.google.com/forms/d/e/1FAIpQLSdeRLJKiPsOgKaumUHDXBI6lLlGzQZqN8Zpw-DMFr59xeVQKA/viewform?pli=1"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 font-semibold underline hover:text-blue-800 transition"
                   >
-                    &nbsp;input Google Formulir
-                  </a>
-                  &nbsp;percepatan.
+                    input Google Formulir
+                  </a>{" "}
+                  percepatan.
                 </li>
-
                 <li>
-                  Jangan lupa untuk <strong>release</strong> setelah input
-                  dilakukan.
+                  Jangan lupa untuk <strong>release</strong> setelah input dilakukan.
                 </li>
               </ul>
             </div>
+
+            {/* Tautan ke halaman visitor */}
+            <div className="flex justify-start items-center gap-1 text-blue-500 hover:text-red-700 transition">
+
+              <Info size={16} />
+              <Link
+                to="/visitor"
+                className="hover:underline hover:text-rose-600 transition"
+              >
+                Lihat Riwayat Pengunjung
+              </Link>
+            </div>
           </div>
 
-          <div className="pt-4">
+          {/* Tombol kembali */}
+          <div className="pt-4 text-center">
             <Link
               to="/"
               className="inline-block bg-rose-600 hover:bg-rose-700 text-white font-semibold px-5 py-2 rounded-lg transition-all"
@@ -108,4 +121,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default InfoPage;
