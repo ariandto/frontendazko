@@ -8,7 +8,7 @@ const Form = () => {
       <div className="min-h-screen bg-gradient-to-br from-rose-100 to-pink-200 pt-20 pb-10 px-4">
         <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-4 sm:p-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-center text-rose-600 mb-6">
-            Formulir Request Pengiriman
+            Formulir Request Pengiriman Azko
           </h1>
 
           <div className="relative w-full" style={{ paddingBottom: "1600px", height: 0 }}>
@@ -18,7 +18,7 @@ const Form = () => {
               frameBorder="0"
               marginHeight={0}
               marginWidth={0}
-              title="Formulir Pendaftaran Google"
+              title="Formulir Request"
               allowFullScreen
             >
               Memuat…
