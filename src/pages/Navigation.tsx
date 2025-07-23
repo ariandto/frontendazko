@@ -28,6 +28,9 @@ export default function Navigation() {
             <Link to="/listpic" className="flex items-center gap-1 text-rose-600 font-semibold hover:underline">
               <Users className="w-5 h-5" /> PIC
             </Link>
+            <Link to="/form-request" className="flex items-center gap-1 text-gray-700 hover:text-rose-600 font-medium transition-all">
+              <FileText className="w-5 h-5" /> Form Request
+            </Link>
             <Link to="/info" className="flex items-center gap-1 text-gray-700 hover:text-rose-600 font-medium transition-all">
               <Info className="w-5 h-5" /> Info
             </Link>
