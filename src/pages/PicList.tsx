@@ -129,17 +129,10 @@ export default function PicList() {
               {/* Komponen "Kembali" telah dihapus */}
 
               <div className="text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-200 bg-clip-text text-transparent mb-4">
-                  Person in Charge
-                </h1>
-                <div className="flex items-center justify-center sm:justify-start space-x-2 text-white">
-                  <Users className="w-5 h-5" />
-                  <span className="text-lg">Total:</span>
-                  <span className="font-bold text-xl bg-gradient-to-r from-gray-200 to-gray-50 bg-clip-text text-transparent">
-                    {users.length}
-                  </span>
-                  <span className="text-lg">PIC</span>
-                </div>
+                {/* <h1 className="text-1xl sm:text-1xl lg:text-5xl font-bold bg-gradient-to-r from-gray-100 via-gray-300 to-gray-200 bg-clip-text text-transparent mb-4">
+                  PIC Transport Planning
+                </h1> */}
+                
               </div>
             </div>
 
@@ -197,7 +190,14 @@ export default function PicList() {
                 </div>
               ))}
             </div>
-
+<div className="flex items-center justify-center sm:justify-start space-x-2 text-white mt-6">
+                  <Users className="w-5 h-5" />
+                  <span className="text-sm">Total:</span>
+                  <span className="font-bold text-xl bg-gradient-to-r from-gray-200 to-gray-50 bg-clip-text text-transparent">
+                    {users.length}
+                  </span>
+                  <span className="text-sm">PIC</span>
+                </div>
           </div>
         </div>
       </div>
