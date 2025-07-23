@@ -2,14 +2,11 @@ import { useState, useEffect } from "react";
 import {
   Search,
   Package,
-  Menu,
-  X,
   Phone,
   RotateCcw,
   XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
-import azkologo from "../assets/azkologo.png";
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation";
 
