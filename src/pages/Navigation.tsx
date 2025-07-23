@@ -60,13 +60,13 @@ export default function Navigation() {
               >
                 PIC
               </Link>
-              <a
-                href="#about"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+              <Link
+                to="/info"
+                className="block text-green-600 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Tentang
-              </a>
+                Info
+              </Link>
             </div>
           </div>
         )}

@@ -3,7 +3,7 @@ import Home from "./pages/Home";
 import UploadForm from "./pages/UploadForm";
 import PhotoList from "./pages/PhotoList";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import UnderMaintenance from "./pages/About";
+import Info from "./pages/Info";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<UploadForm />} />
           <Route path="/listpic" element={<PhotoList />} />
-          <Route path="/onprogress" element={<UnderMaintenance />} />
+          <Route path="/onprogress" element={<Info />} />
         </Routes>
       </Router>
     </GoogleOAuthProvider>
