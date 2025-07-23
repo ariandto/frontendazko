@@ -17,7 +17,7 @@ const Info = () => {
               <h2 className="font-semibold text-rose-500">TUGU</h2>
               <ul className="list-disc list-inside ml-4">
                 <li>Pastikan <strong>berita acara</strong> dikirim melalui email.</li>
-                <li><strong>Input link</strong> berita acara dengan benar.</li>
+                <li><strong>Input link</strong> tugu dengan benar.</li>
                 <li>Barang yang <strong>rusak</strong> harus dipacking kembali dengan rapi.</li>
               </ul>
             </div>
