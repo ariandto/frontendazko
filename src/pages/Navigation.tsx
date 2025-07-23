@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import azkologo from "../assets/azkologo.png";
+import { Home, Users, FileText, Info, Menu, X } from "lucide-react";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,8 +25,12 @@ export default function Navigation() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
-            <Link to="/listpic" className="text-rose-600 font-semibold hover:underline">PIC</Link>
-            <a href="/info" className="text-gray-700 hover:text-rose-600 font-medium transition-all">Info</a>
+            <Link to="/listpic" className="flex items-center gap-1 text-rose-600 font-semibold hover:underline">
+              <Users className="w-5 h-5" /> PIC
+            </Link>
+            <Link to="/info" className="flex items-center gap-1 text-gray-700 hover:text-rose-600 font-medium transition-all">
+              <Info className="w-5 h-5" /> Info
+            </Link>
           </div>
 
           {/* Hamburger Button */}
@@ -35,9 +40,7 @@ export default function Navigation() {
               className="relative w-9 h-9 flex flex-col justify-center items-center group"
               aria-label="Menu"
             >
-              <div className={`w-6 h-0.5 bg-gray-800 transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-              <div className={`w-6 h-0.5 bg-gray-800 mt-1.5 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-              <div className={`w-6 h-0.5 bg-gray-800 mt-1.5 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
+              {isMenuOpen ? <X className="w-6 h-6 text-gray-800" /> : <Menu className="w-6 h-6 text-gray-800" />}
             </button>
           </div>
         </div>
@@ -45,37 +48,35 @@ export default function Navigation() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-2 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-md rounded-b-lg">
-            <div className="px-4 py-4 space-y-2">
+            <div className="px-4 py-4 space-y-3">
               <Link
                 to="/"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                className="flex items-center gap-2 text-gray-800 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Beranda
+                <Home className="w-5 h-5" /> Home
               </Link>
               <Link
                 to="/listpic"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                className="flex items-center gap-2 text-gray-800 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                PIC
+                <Users className="w-5 h-5" /> PIC
               </Link>
               <Link
                 to="/form-request"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                className="flex items-center gap-2 text-gray-800 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Form Request
+                <FileText className="w-5 h-5" /> Form Request
               </Link>
-              <div className="px-4 py-4 space-y-2">
               <Link
-                to="/"
-                className="block text-gray-800 font-medium hover:text-rose-600 transition-colors"
+                to="/info"
+                className="flex items-center gap-2 text-gray-800 font-medium hover:text-rose-600 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Info
+                <Info className="w-5 h-5" /> Info
               </Link>
-              </div>
             </div>
           </div>
         )}
