@@ -25,7 +25,7 @@ export default function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
             <Link to="/listpic" className="text-rose-600 font-semibold hover:underline">PIC</Link>
-            <a href="#about" className="text-gray-700 hover:text-rose-600 font-medium transition-all">Tentang</a>
+            <a href="/info" className="text-gray-700 hover:text-rose-600 font-medium transition-all">Info</a>
           </div>
 
           {/* Hamburger Button */}
