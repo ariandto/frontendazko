@@ -52,14 +52,7 @@ const InfoPage = () => {
               <ul className="list-disc list-inside ml-4">
                 <li>Pastikan <strong>berita acara</strong> dikirim melalui email.</li>
                 <li>
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdeRLJKiPsOgKaumUHDXBI6lLlGzQZqN8Zpw-DMFr59xeVQKA/viewform?pli=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 font-semibold underline hover:text-blue-800 transition"
-                  >
                     Input Google Formulir
-                  </a>{" "}
                   dengan benar.
                 </li>
                 <li>
@@ -76,16 +69,7 @@ const InfoPage = () => {
                   Wajib mendapatkan <strong>approve</strong> dari <strong>Pak Yusuf</strong>, selaku Manager DC.
                 </li>
                 <li>
-                  Setelah approve, segera{" "}
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdeRLJKiPsOgKaumUHDXBI6lLlGzQZqN8Zpw-DMFr59xeVQKA/viewform?pli=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 font-semibold underline hover:text-blue-800 transition"
-                  >
-                    input Google Formulir
-                  </a>{" "}
-                  percepatan.
+                  Setelah approve, segera input Google Formulir percepatan.
                 </li>
                 <li>
                   Jangan lupa untuk <strong>release</strong> setelah input dilakukan.
