@@ -4,6 +4,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "../layouts/Navigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router-dom";
 
 interface User {
   id: number;
@@ -70,6 +71,17 @@ export default function PicList() {
 
     postVisit();
   }, []);
+  
+  const { divisi } = useParams();
+
+  useEffect(() => {
+  if (divisi) {
+    const decoded = decodeURIComponent(divisi.replace(/-/g, " "));
+    setSelectedDepartment(decoded);
+  } else {
+    setSelectedDepartment("All");
+  }
+}, [divisi]);
 
   useEffect(() => {
     if (selectedDepartment === "All") {
