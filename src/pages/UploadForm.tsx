@@ -170,6 +170,12 @@ export default function UploadForm() {
                 <option value="Siang 15:20 - 23:00">
                   Siang (15:20 - 23:00)
                 </option>
+                 <option value="Siang 16:00 - 00:00">
+                  Siang (16:00 - 00:00)
+                </option>
+                <option value="Malam 00:00 - 07:00">
+                  Malam (16:00 - 00:00)
+                </option>
               </select>
             </div>
 
