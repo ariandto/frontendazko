@@ -143,7 +143,7 @@ export default function UploadForm() {
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 hover:bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
-                <option value="">Pilih Divisi</option>
+                <option value="">Pilih Divisi / Jabatan </option>
                 <option value="Transport Planning">Transport Planning</option>
                 <option value="Planner DC">Planner DC</option>
                 <option value="Duty DC">Duty DC</option>                

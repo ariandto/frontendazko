@@ -92,10 +92,12 @@ export default function PicList() {
   }, [selectedDepartment, users]);
 
   const departments = [
-    { value: "All", label: "Semua Divisi" },
-    { value: "Transport Planning", label: "Transport Planning" },
-    { value: "Planner DC", label: "Planner DC" },
-  ];
+  { value: "All", label: "Semua Divisi" },
+  { value: "Transport Planning", label: "Transport Planning" },
+  { value: "Planner DC", label: "Planner DC" },
+  { value: "Duty DC", label: "Duty DC" },
+  { value: "Delivery Monitoring", label: "Delivery Monitoring" },
+];
 
   const handleDepartmentSelect = (value: string) => {
     setSelectedDepartment(value);
