@@ -201,7 +201,7 @@ export default function VisitorStats() {
                       </div>
                       <div className="flex-1">
                         <h3 className="text-gray-500 text-xs sm:text-sm font-medium uppercase tracking-wide mb-1 sm:mb-2">
-                          Total Rekaman
+                          Total Visitor
                         </h3>
                         <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
                           {visitors.length}
