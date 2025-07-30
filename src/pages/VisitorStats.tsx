@@ -73,7 +73,9 @@ export default function VisitorStats() {
         setFilteredVisitors(viewData.visitors);
         
         // Hitung rata-rata pengunjung per hari
-        const uniqueDates = new Set(viewData.visitors.map(v => new Date(v.VisitedDate).toDateString()));
+        const uniqueDates = new Set(
+  viewData.visitors.map((v: Visitor) => new Date(v.VisitedDate).toDateString())
+);
         const avg = viewData.visitors.length / uniqueDates.size;
         setAvgVisitorsPerDay(Math.round(avg));
       } catch (error) {
