@@ -330,9 +330,21 @@ const UserCard = ({ user, onImageClick }: { user: User; onImageClick: (user: Use
       <div className="px-4 sm:px-6 pb-4 text-center">
         <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{user.name}</h3>
         <div className="flex flex-wrap justify-center gap-2 mb-4">
-          <span className="text-xs font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1 rounded-full shadow">
-            {user.department}
-          </span>
+          <span
+  className={`text-xs font-medium px-3 py-1 rounded-full shadow ${
+    user.department === "Duty DC"
+      ? "bg-gradient-to-r from-yellow-500 to-red-500"
+      : user.department === "Planner DC"
+      ? "bg-gradient-to-r from-green-400 to-green-600"
+      : user.department === "Transport Planning"
+      ? "bg-gradient-to-r from-blue-400 to-blue-600"
+      : user.department === "Delivery Monitoring"
+      ? "bg-gradient-to-r from-pink-500 to-rose-500"
+      : "bg-gray-400"
+  } text-white`}
+>
+  {user.department}
+</span>
           <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow flex items-center">
             <Clock className="w-3 h-3 mr-1" />
             Shift {user.shift}
