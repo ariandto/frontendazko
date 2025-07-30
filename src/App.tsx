@@ -14,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/upload" element={<UploadForm />} />
-          <Route path="/listpic" element={<PicList />} />
+           <Route path="/listpic" element={<PicList />} />
+          <Route path="/listpic/:divisi" element={<PicList />} />
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
           <Route path="/visitor" element={<VisitorStats />} />
