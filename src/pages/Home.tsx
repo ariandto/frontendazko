@@ -282,7 +282,8 @@ function Home() {
 
       const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
       const result = await res.json();
-      console.log("DEBUG: Result dari API:", result);
+      console.log("Isi data:", result);
+      console.log("Contoh item:", result[0]);
       setData(result);
       cacheRef.current.set(trimmedQuery, result);
       showNotification("Data berhasil ditemukan!", "success");
