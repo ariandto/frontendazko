@@ -279,6 +279,7 @@ function Home() {
       }
 
       try {
+        const apiUrl = getTrackingApi();
         const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
         const result = await res.json();
         setData(result);
