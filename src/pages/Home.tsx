@@ -289,6 +289,7 @@ function Home() {
 
     try {
       const apiUrl = getTrackingApi();
+      console.log("✅ API yang digunakan:", apiUrl);
       const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
 
       if (!res.ok) {
