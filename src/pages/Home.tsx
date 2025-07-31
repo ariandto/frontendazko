@@ -288,29 +288,29 @@ function Home() {
     }
 
     try {
-      const apiUrl = getTrackingApis();
-      // console.log("✅ API yang digunakan:", apiUrl);
-      const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
+      const apiUrls = getTrackingApis(); // ambil daftar API (bulan sekarang, sebelum, sesudah)
+      let result: DataItem[] = [];
 
-      if (!res.ok) {
-        throw new Error(`Gagal mengambil data: ${res.status}`);
+      for (const apiUrl of apiUrls) {
+        console.log(`🔍 Coba fetch dari: ${apiUrl}`);
+        const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
+        if (!res.ok) continue;
+
+        const json = await res.json();
+        if (Array.isArray(json) && json.length > 0) {
+          result = json;
+          break; // ✅ jika ketemu, stop loop
+        }
       }
 
-      const result = await res.json();
+      // Simpan hasil & cache
+      setData(result);
+      cacheRef.current.set(trimmedQuery, result);
 
-      // Debug log
-      // console.log("Isi data:", result);
-      // console.log("Contoh item:", result[0]);
-
-      // Validasi hasil
-      if (Array.isArray(result) && result.length > 0) {
-        setData(result);
-        cacheRef.current.set(trimmedQuery, result);
+      if (result.length > 0) {
         showNotification("Data berhasil ditemukan!", "success");
       } else {
-        setData([]);
-        cacheRef.current.set(trimmedQuery, []);
-        showNotification("Data tidak ditemukan.", "warning");
+        showNotification("Data tidak ditemukan di semua API.", "warning");
       }
     } catch (err) {
       console.error("❌ Error saat fetch:", err);
@@ -321,6 +321,7 @@ function Home() {
     }
   }, 400);
 };
+
 
 
 
