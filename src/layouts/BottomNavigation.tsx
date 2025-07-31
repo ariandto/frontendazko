@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Users, FileText, Info, ChevronDown } from "lucide-react";
+import { Users, FileText, Info } from "lucide-react";
 
 export default function BottomNavigation() {
   const location = useLocation();
@@ -27,7 +27,6 @@ export default function BottomNavigation() {
           >
             <Users className="w-5 h-5 mb-1" />
             PIC
-            <ChevronDown className="w-4 h-4 mt-0.5" />
           </button>
 
           {/* Dropdown menu */}
