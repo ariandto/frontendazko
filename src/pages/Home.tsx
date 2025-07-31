@@ -45,6 +45,7 @@ interface DataItem {
   namePicHub2: string;
   picHub2: string;
   status: string;
+  nopol: string;
 }
 
 
@@ -135,7 +136,9 @@ const ResultCard = ({ item, delay }: { item: DataItem; delay: number }) => (
           <div className="text-gray-500">Nama:</div>
           <div className="font-semibold">{item.name}</div>
           <div className="text-gray-500">No LC:</div>
-          <div className="font-semibold">{item.noLC}</div>
+          <div className="font-semibold">
+  {item.noLC} - {item.nopol}
+</div>
           <div className="text-gray-500">Delivery Date:</div>
           <div className="font-semibold text-red-500">{parseDeliveryDate(item.noLC)}</div>
           <div className="text-gray-500">Delivery:</div>
