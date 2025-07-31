@@ -258,41 +258,42 @@ function Home() {
   };
 
   const handleSearch = () => {
-    const trimmedQuery = query.trim();
-    if (!trimmedQuery) {
-      showNotification("Masukkan nomor order atau nomor receive.", "warning");
+  const trimmedQuery = query.trim();
+  if (!trimmedQuery) {
+    showNotification("Masukkan nomor order atau nomor receive.", "warning");
+    return;
+  }
+
+  // Debounce
+  if (debounceRef.current) clearTimeout(debounceRef.current);
+  debounceRef.current = setTimeout(async () => {
+    setLoading(true);
+    setHasSearched(true);
+
+    if (cacheRef.current.has(trimmedQuery)) {
+      setData(cacheRef.current.get(trimmedQuery)!);
+      setLoading(false);
+      showNotification("Data ditampilkan dari cache.", "success");
       return;
     }
 
-    // Debounce search
-    if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(async () => {
-      setLoading(true);
-      setHasSearched(true);
+    try {
+      const apiUrl = getTrackingApi(); 
 
-      // Cek cache
-      if (cacheRef.current.has(trimmedQuery)) {
-        setData(cacheRef.current.get(trimmedQuery)!);
-        setLoading(false);
-        showNotification("Data ditampilkan dari cache.", "success");
-        return;
-      }
+      const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
+      const result = await res.json();
+      setData(result);
+      cacheRef.current.set(trimmedQuery, result);
+      showNotification("Data berhasil ditemukan!", "success");
+    } catch (err) {
+      setData([]);
+      showNotification("Terjadi kesalahan saat mencari data.", "error");
+    } finally {
+      setLoading(false);
+    }
+  }, 400);
+};
 
-      try {
-        const apiUrl = getTrackingApi();
-        const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
-        const result = await res.json();
-        setData(result);
-        cacheRef.current.set(trimmedQuery, result);
-        showNotification("Data berhasil ditemukan!", "success");
-      } catch (err) {
-        setData([]);
-        showNotification("Terjadi kesalahan saat mencari data.", "error");
-      } finally {
-        setLoading(false);
-      }
-    }, 400); // debounce 400ms
-  };
 
   const handleReset = () => {
     setQuery("");
