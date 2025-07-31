@@ -55,7 +55,7 @@ export default function BottomNavigation() {
 
               {/* Dropdown Menu */}
               {showDropdown && (
-                <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-[90vw] max-w-xs z-50">
+                <div className="absolute bottom-20 z-50 w-[90vw] max-w-xs left-1/2 -translate-x-1/2 sm:left-auto sm:translate-x-0">
                   <div className="bg-white/95 rounded-2xl shadow-2xl border border-white/30 overflow-hidden">
                     {/* Header */}
                     <div className="bg-gradient-to-r from-red-600 to-red-500 px-4 py-3 flex items-center justify-between">
