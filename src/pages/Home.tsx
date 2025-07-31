@@ -240,6 +240,7 @@ function Home() {
   const [notification, setNotification] = useState<{ message: string; type: string } | null>(null);
   const debounceRef = useRef<number | null>(null);
   const cacheRef = useRef<Map<string, DataItem[]>>(new Map());
+  const apiUrl = getTrackingApi();
 
   // Visit log
   useEffect(() => {
@@ -278,9 +279,7 @@ function Home() {
       }
 
       try {
-        const res = await fetch(
-          `https://script.google.com/macros/s/AKfycbxGllRkDHvNBGeTx9o24l42cDyg8fWgm2rETU-Z9sJPaRa282wxorhq8EkVysN8M7q6cg/exec?q=${encodeURIComponent(trimmedQuery)}`
-        );
+        const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
         const result = await res.json();
         setData(result);
         cacheRef.current.set(trimmedQuery, result);
