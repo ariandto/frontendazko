@@ -32,29 +32,28 @@ export default function BottomNavigation() {
 
           {/* Dropdown menu */}
           {showDropdown && (
-            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-40 bg-white text-gray-800 rounded-xl shadow-lg z-50 text-sm font-medium">
+            <div className="absolute bottom-16 left-1/2 -translate-x-1/2 w-44 rounded-xl shadow-lg z-50 text-sm font-medium">
               <button
                 onClick={() => handleDivisiSelect("All")}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-t-xl"
+                className="w-full text-left px-4 py-2 bg-gray-200 hover:opacity-80 rounded-t-xl"
               >
                 Semua PIC
               </button>
               <button
                 onClick={() => handleDivisiSelect("Transport Planning")}
-                className="w-full text-left px-4 py-2 hover:bg-blue-500"
+                className="w-full text-left px-4 py-2 bg-blue-500 text-white hover:opacity-80"
               >
                 Transport Planning
               </button>
-               <button
+              <button
                 onClick={() => handleDivisiSelect("Duty DC")}
-                className="w-full text-left px-4 py-2 hover:bg-gren-500"
+                className="w-full text-left px-4 py-2 bg-yellow-500 text-black hover:opacity-80"
               >
-               Duty DC
+                Duty DC
               </button>
-              
               <button
                 onClick={() => handleDivisiSelect("Planner DC")}
-                className="w-full text-left px-4 py-2 hover:bg-green-500 rounded-b-xl"
+                className="w-full text-left px-4 py-2 bg-green-500 text-white hover:opacity-80 rounded-b-xl"
               >
                 Planner DC
               </button>
