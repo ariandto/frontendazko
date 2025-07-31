@@ -147,7 +147,6 @@ export default function UploadForm() {
                 <option value="Transport Planning">Transport Planning</option>
                 <option value="Planner DC">Planner DC</option>
                 <option value="Duty DC">Duty DC</option>                
-                <option value="Delivery Monitoring">Delivery Monitoring</option>
               </select>
             </div>
 
