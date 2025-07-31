@@ -76,21 +76,16 @@ export default function PicList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-  if (divisi) {
-    const decoded = decodeURIComponent(divisi.replace(/-/g, " "));
-    setSelectedDepartment(decoded);
-  } else {
-    setSelectedDepartment("All");
-  }
-}, [divisi]);
+  const decodedDivisi = divisi ? decodeURIComponent(divisi.replace(/-/g, " ")) : "All";
+  setSelectedDepartment(decodedDivisi);
 
-  useEffect(() => {
-    if (selectedDepartment === "All") {
-      setFilteredUsers(users);
-    } else {
-      setFilteredUsers(users.filter((u) => u.department === selectedDepartment));
-    }
-  }, [selectedDepartment, users]);
+  if (decodedDivisi === "All") {
+    setFilteredUsers(users);
+  } else {
+    const filtered = users.filter((u) => u.department.toLowerCase() === decodedDivisi.toLowerCase());
+    setFilteredUsers(filtered);
+  }
+}, [divisi, users]);
 
   const departments = [
   { value: "All", label: "Semua Divisi" },

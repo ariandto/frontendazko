@@ -16,9 +16,9 @@ const postVisit = async () => {
       body: JSON.stringify({}),
     });
     const data = await res.json();
-    console.log("📌 Visit logged from Info:", data);
+    console.log(" Visit logged from Info:", data);
   } catch (err) {
-    console.error("❌ Gagal kirim kunjungan:", err);
+    console.error(" Gagal kirim kunjungan:", err);
   }
 };
 
