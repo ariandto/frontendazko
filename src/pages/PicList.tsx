@@ -12,6 +12,8 @@ import Navigation from "../layouts/TopNavigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
 import { useParams, useNavigate } from "react-router-dom";
+import "../css/piclistStyle.css"; // Import custom styles
+
 
 interface User {
   id: number;
