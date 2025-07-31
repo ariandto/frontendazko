@@ -356,7 +356,7 @@ function Home() {
       <div className="relative z-10 pt-20 px-2 sm:px-4 md:px-8">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-3">
               <span className="bg-gradient-to-r from-red-600 to-rose-600 bg-clip-text text-transparent">Lacak Pengiriman</span>
             </h1>
             <div className="flex items-center justify-center gap-3 mt-2">
