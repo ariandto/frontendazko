@@ -4,7 +4,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "../layouts/TopNavigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 interface User {
   id: number;
@@ -73,6 +73,7 @@ export default function PicList() {
   }, []);
   
   const { divisi } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
   if (divisi) {
@@ -98,10 +99,18 @@ export default function PicList() {
   { value: "Duty DC", label: "Duty DC" },
 ];
 
-  const handleDepartmentSelect = (value: string) => {
-    setSelectedDepartment(value);
-    setIsDropdownOpen(false);
-  };
+ const handleDepartmentSelect = (value: string) => {
+  setSelectedDepartment(value);
+  setIsDropdownOpen(false);
+
+  // Ganti URL agar TopNavigation bisa menampilkan judul sesuai divisi
+  if (value === "All") {
+    navigate("/listpic");
+  } else {
+    const slug = value.toLowerCase().replace(/\s+/g, "-");
+    navigate(`/listpic/${slug}`);
+  }
+};
 
   const openImageModal = (user: User) => {
     console.log('Opening modal for user:', user.name); // Debug log
