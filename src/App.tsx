@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import Navigation from "./components/Navigation";
-import BottomNavigation from "./components/BottomNavigation";
+import Navigation from "./layouts/Navigation";
+import BottomNavigation from "./layouts/BottomNavigation";
 import Home from "./pages/Home";
 import UploadForm from "./pages/UploadForm";
 import Info from "./pages/Info";
