@@ -12,8 +12,6 @@ import Navigation from "../layouts/TopNavigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
 import { useParams, useNavigate } from "react-router-dom";
-import "../css/piclistStyle.css"; // Import custom styles
-
 
 interface User {
   id: number;
@@ -133,9 +131,9 @@ export default function PicList() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-500 via-orange-600 to-red-600 p-4">
-        <div className="bg-white/10 p-8 rounded-3xl backdrop-blur-lg text-center border border-white/20 shadow-2xl">
-          <Loader className="animate-spin text-white w-12 h-12 mx-auto mb-4" />
-          <p className="text-white text-lg font-medium">Memuat data PIC...</p>
+        <div className="bg-white/10 p-6 sm:p-8 rounded-3xl backdrop-blur-lg text-center border border-white/20 shadow-2xl">
+          <Loader className="animate-spin text-white w-8 h-8 sm:w-12 sm:h-12 mx-auto mb-3 sm:mb-4" />
+          <p className="text-white text-sm sm:text-lg font-medium">Memuat data PIC...</p>
         </div>
       </div>
     );
@@ -144,12 +142,12 @@ export default function PicList() {
   if (error) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-900 via-pink-900 to-rose-900 flex items-center justify-center p-4">
-        <div className="bg-white/10 p-8 rounded-3xl text-center backdrop-blur-lg border border-white/20 shadow-2xl max-w-md">
-          <AlertTriangle className="text-red-400 w-16 h-16 mx-auto mb-4" />
-          <p className="text-white font-medium text-lg mb-6">{error}</p>
+        <div className="bg-white/10 p-6 sm:p-8 rounded-3xl text-center backdrop-blur-lg border border-white/20 shadow-2xl max-w-md">
+          <AlertTriangle className="text-red-400 w-12 h-12 sm:w-16 sm:h-16 mx-auto mb-3 sm:mb-4" />
+          <p className="text-white font-medium text-sm sm:text-lg mb-4 sm:mb-6">{error}</p>
           <button
             onClick={fetchUsers}
-            className="px-6 py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-2xl font-medium hover:from-red-600 hover:to-pink-600 transition"
+            className="px-4 py-2 sm:px-6 sm:py-3 bg-gradient-to-r from-red-500 to-pink-500 text-white rounded-2xl text-sm sm:text-base font-medium hover:from-red-600 hover:to-pink-600 transition"
           >
             Coba Lagi
           </button>
@@ -176,17 +174,17 @@ export default function PicList() {
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-cyan-400/20 to-blue-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl mx-auto space-y-10">
-          {/* Filter Dropdown */}
-          <div className="flex justify-center sm:justify-start mb-6">
-            <div className="relative">
+        <div className="relative z-10 px-3 sm:px-6 lg:px-8 py-4 sm:py-6 max-w-7xl mx-auto space-y-6 sm:space-y-10">
+          {/* Filter Dropdown - Mobile Optimized */}
+          <div className="flex justify-center sm:justify-start mb-4 sm:mb-6">
+            <div className="relative w-full max-w-xs sm:max-w-sm">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="w-64 sm:w-80 px-6 py-4 rounded-2xl bg-white/20 backdrop-blur-lg border border-white/30 text-white shadow-xl hover:bg-white/25 transition-all duration-300 flex items-center justify-between group"
+                className="w-full px-4 py-3 sm:px-6 sm:py-4 rounded-2xl bg-white/20 backdrop-blur-lg border border-white/30 text-white shadow-xl hover:bg-white/25 transition-all duration-300 flex items-center justify-between group"
               >
-                <div className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
-                  <span className="font-medium text-left">
+                <div className="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                  <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex-shrink-0"></div>
+                  <span className="font-medium text-left text-sm sm:text-base truncate">
                     {departments.find(
                       (d) =>
                         d.value.toLowerCase() ===
@@ -195,7 +193,7 @@ export default function PicList() {
                   </span>
                 </div>
                 <ChevronDown
-                  className={`w-5 h-5 transition-transform duration-300 ${
+                  className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 transition-transform duration-300 ${
                     isDropdownOpen ? "rotate-180" : ""
                   }`}
                 />
@@ -212,22 +210,22 @@ export default function PicList() {
                       <button
                         key={dept.value}
                         onClick={() => handleDepartmentSelect(dept.value)}
-                        className={`w-full px-6 py-4 text-left hover:bg-white/20 transition-all duration-200 flex items-center space-x-3 ${
+                        className={`w-full px-4 py-3 sm:px-6 sm:py-4 text-left hover:bg-white/20 transition-all duration-200 flex items-center space-x-2 sm:space-x-3 ${
                           selectedDepartment === dept.value
                             ? "bg-white/15 text-white"
                             : "text-white/90 hover:text-white"
                         }`}
                       >
                         <div
-                          className={`w-2 h-2 rounded-full ${
+                          className={`w-2 h-2 rounded-full flex-shrink-0 ${
                             selectedDepartment === dept.value
                               ? "bg-gradient-to-r from-cyan-400 to-blue-500"
                               : "bg-white/40"
                           }`}
                         />
-                        <span className="font-medium">{dept.label}</span>
+                        <span className="font-medium text-sm sm:text-base truncate">{dept.label}</span>
                         {selectedDepartment === dept.value && (
-                          <div className="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                          <div className="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse flex-shrink-0" />
                         )}
                       </button>
                     ))}
@@ -237,8 +235,8 @@ export default function PicList() {
             </div>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {/* Grid - Mobile Optimized */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
             {filteredUsers.map((user) => (
               <UserCard
                 key={user.id}
@@ -248,56 +246,56 @@ export default function PicList() {
             ))}
           </div>
 
-          {/* Total */}
-          <div className="flex items-center justify-center sm:justify-start space-x-2 text-white mt-6">
-            <Users className="w-5 h-5" />
-            <span className="text-sm">Total:</span>
-            <span className="font-bold text-xl bg-gradient-to-r from-gray-200 to-gray-50 bg-clip-text text-transparent">
+          {/* Total - Mobile Optimized */}
+          <div className="flex items-center justify-center sm:justify-start space-x-2 text-white mt-4 sm:mt-6">
+            <Users className="w-4 h-4 sm:w-5 sm:h-5" />
+            <span className="text-xs sm:text-sm">Total:</span>
+            <span className="font-bold text-lg sm:text-xl bg-gradient-to-r from-gray-200 to-gray-50 bg-clip-text text-transparent">
               {filteredUsers.length}
             </span>
-            <span className="text-sm">PIC</span>
+            <span className="text-xs sm:text-sm">PIC</span>
           </div>
         </div>
       </div>
 
-      {/* Image Modal */}
+      {/* Image Modal - Mobile Optimized */}
       {selectedUser && (
         <div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-3 sm:p-4"
           onClick={closeImageModal}
         >
           <div
-            className="relative max-w-4xl max-h-[90vh] bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 overflow-hidden"
+            className="relative max-w-sm sm:max-w-4xl max-h-[90vh] bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 overflow-hidden w-full"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={closeImageModal}
-              className="absolute top-4 right-4 z-10 bg-red-500/80 hover:bg-red-500 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
+              className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 bg-red-500/80 hover:bg-red-500 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
 
-            <div className="p-6">
+            <div className="p-4 sm:p-6">
               <img
                 src={`${API_URL}/${selectedUser.photo}`}
                 alt={selectedUser.name}
-                className="w-full h-auto max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                className="w-full h-auto max-h-[60vh] sm:max-h-[70vh] object-contain rounded-2xl shadow-2xl"
                 onError={(e) => {
                   e.currentTarget.src =
                     "https://via.placeholder.com/800x600?text=Image+Not+Found";
                 }}
               />
 
-              <div className="mt-6 text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">
+              <div className="mt-4 sm:mt-6 text-center">
+                <h3 className="text-lg sm:text-2xl font-bold text-white mb-2">
                   {selectedUser.name}
                 </h3>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <span className="text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full shadow">
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
+                  <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow">
                     {selectedUser.department}
                   </span>
-                  <span className="text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-2 rounded-full shadow flex items-center">
-                    <Clock className="w-4 h-4 mr-2" />
+                  <span className="text-xs sm:text-sm font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow flex items-center">
+                    <Clock className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                     Shift {selectedUser.shift}
                   </span>
                 </div>
@@ -327,8 +325,8 @@ const UserCard = ({
 
   return (
     <div className="group bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl">
-      <div className="relative p-4 sm:p-6 pt-6">
-        <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
+      <div className="relative p-3 sm:p-6 pt-4 sm:pt-6">
+        <div className="relative mx-auto w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48">
           <div
             className="relative w-full h-full cursor-pointer group/image"
             onClick={() => {
@@ -342,34 +340,34 @@ const UserCard = ({
               onError={(e) => {
                 e.currentTarget.src = "https://via.placeholder.com/400";
               }}
-              className="w-full h-full object-cover rounded-full border-4 border-white/20 group-hover:border-white/40 transition duration-300 shadow-2xl hover:scale-105"
+              className="w-full h-full object-cover rounded-full border-2 sm:border-4 border-white/20 group-hover:border-white/40 transition duration-300 shadow-2xl hover:scale-105"
             />
             <div className="absolute inset-0 rounded-full bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
             <div className="absolute inset-0 rounded-full bg-white/0 group-hover/image:bg-white/10 transition-all duration-300 flex items-center justify-center opacity-0 group-hover/image:opacity-100">
-              <span className="text-white text-xs font-medium bg-black/70 px-3 py-1 rounded-full">
+              <span className="text-white text-xs font-medium bg-black/70 px-2 py-1 sm:px-3 sm:py-1 rounded-full">
                 Klik untuk memperbesar
               </span>
             </div>
           </div>
           <button
-            className="absolute -bottom-2 -right-2 text-white p-3 rounded-full border-2 border-white shadow-lg transition-all duration-300 bg-green-500 hover:bg-green-600 hover:scale-110 opacity-0 group-hover:opacity-100"
+            className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 text-white p-2 sm:p-3 rounded-full border-2 border-white shadow-lg transition-all duration-300 bg-green-500 hover:bg-green-600 hover:scale-110 opacity-0 group-hover:opacity-100"
             onClick={(e) => {
               e.stopPropagation();
               openWhatsApp(user.phone);
             }}
             aria-label="Chat di WhatsApp"
           >
-            <FaWhatsapp className="w-4 h-4" />
+            <FaWhatsapp className="w-3 h-3 sm:w-4 sm:h-4" />
           </button>
         </div>
       </div>
-      <div className="px-4 sm:px-6 pb-4 text-center">
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+      <div className="px-3 sm:px-6 pb-3 sm:pb-4 text-center">
+        <h3 className="text-sm sm:text-lg md:text-xl font-bold text-white mb-2">
           {user.name}
         </h3>
-        <div className="flex flex-wrap justify-center gap-2 mb-4">
+        <div className="flex flex-wrap justify-center gap-1 sm:gap-2 mb-3 sm:mb-4">
           <span
-            className={`text-xs font-medium px-3 py-1 rounded-full shadow ${
+            className={`text-xs font-medium px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow ${
               user.department === "Duty DC"
                 ? "bg-gradient-to-r from-yellow-500 to-red-500"
                 : user.department === "Planner DC"
@@ -381,17 +379,17 @@ const UserCard = ({
           >
             {user.department}
           </span>
-          <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow flex items-center">
+          <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow flex items-center">
             <Clock className="w-3 h-3 mr-1" />
             Shift {user.shift}
           </span>
         </div>
-        <div className="pt-4 border-t border-white/20 flex justify-center">
+        <div className="pt-3 sm:pt-4 border-t border-white/20 flex justify-center">
           <button
-            className="px-6 py-3 rounded-2xl text-sm flex items-center font-medium shadow-lg transition-all duration-300 bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 hover:scale-105"
+            className="px-4 py-2 sm:px-6 sm:py-3 rounded-2xl text-xs sm:text-sm flex items-center font-medium shadow-lg transition-all duration-300 bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 hover:scale-105"
             onClick={() => openWhatsApp(user.phone)}
           >
-            <FaWhatsapp className="w-5 h-5 mr-2" />
+            <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 mr-1 sm:mr-2" />
             Chat
           </button>
         </div>
