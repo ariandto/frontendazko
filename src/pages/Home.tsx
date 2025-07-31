@@ -240,7 +240,7 @@ function Home() {
   const [notification, setNotification] = useState<{ message: string; type: string } | null>(null);
   const debounceRef = useRef<number | null>(null);
   const cacheRef = useRef<Map<string, DataItem[]>>(new Map());
-  const apiUrl = getTrackingApi();
+ 
 
   // Visit log
   useEffect(() => {
