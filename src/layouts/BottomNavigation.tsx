@@ -41,13 +41,20 @@ export default function BottomNavigation() {
               </button>
               <button
                 onClick={() => handleDivisiSelect("Transport Planning")}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                className="w-full text-left px-4 py-2 hover:bg-blue-500"
               >
                 Transport Planning
               </button>
+               <button
+                onClick={() => handleDivisiSelect("Duty DC")}
+                className="w-full text-left px-4 py-2 hover:bg-gren-500"
+              >
+               Duty DC
+              </button>
+              
               <button
                 onClick={() => handleDivisiSelect("Planner DC")}
-                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-b-xl"
+                className="w-full text-left px-4 py-2 hover:bg-green-500 rounded-b-xl"
               >
                 Planner DC
               </button>
