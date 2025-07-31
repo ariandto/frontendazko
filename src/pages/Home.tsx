@@ -11,7 +11,7 @@ import Navigation from "../layouts/Navigation";
 import { Helmet } from "react-helmet";
 import { API_VISIT } from "../config/apiurl";
 import Footer from "../layouts/Footer";
-import { getTrackingApi } from "../config/apitracking";
+import { getTrackingApis } from "../config/apitracking";
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
@@ -288,7 +288,7 @@ function Home() {
     }
 
     try {
-      const apiUrl = getTrackingApi();
+      const apiUrl = getTrackingApis();
       console.log("✅ API yang digunakan:", apiUrl);
       const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
 
