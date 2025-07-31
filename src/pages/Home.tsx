@@ -10,7 +10,8 @@ import azko from "../assets/azko.png";
 import Navigation from "../layouts/Navigation";
 import { Helmet } from "react-helmet";
 import { API_VISIT } from "../config/apiurl";
-import Footer from "../layouts/Footer"
+import Footer from "../layouts/Footer";
+import { getTrackingApi } from "../config/apitracking";
 
 // WhatsApp Icon SVG
 const WhatsAppIcon = ({ className = "w-5 h-5" }) => (
