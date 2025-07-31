@@ -336,8 +336,6 @@ const UserCard = ({ user, onImageClick }: { user: User; onImageClick: (user: Use
       : user.department === "Planner DC"
       ? "bg-gradient-to-r from-green-400 to-green-600"
       : user.department === "Transport Planning"
-      ? "bg-gradient-to-r from-blue-400 to-blue-600"
-      : user.department === "Delivery Monitoring"
       ? "bg-gradient-to-r from-pink-500 to-rose-500"
       : "bg-gray-400"
   } text-white`}
