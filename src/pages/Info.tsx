@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
-import Navigation from "../layouts/Navigation";
+import Navigation from "../layouts/TopNavigation";
 import { API_VISIT } from "../config/apiurl";
 
 import { Info } from "lucide-react";

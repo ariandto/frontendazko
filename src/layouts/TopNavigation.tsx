@@ -4,27 +4,31 @@ import { Link, useLocation } from "react-router-dom";
 import azkologo from "../assets/azkologo.png";
 import { Home, Users, FileText, Info, X, MoreVertical } from "lucide-react";
 
-export default function Navigation() {
+export default function TopNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const getPageTitle = () => {
-    switch (currentPath) {
-      case "/":
-        return "Home";
-      case "/listpic":
-        return "Daftar PIC";
-      case "/form-request":
-        return "Form Request";
-      case "/visitor":
-        return "Riwayat Pengunjung";
-      case "/info":
-        return "Informasi Penting";
-      default:
-        return "Lacak Pengiriman";
-    }
-  };
+const getPageTitle = () => {
+  if (currentPath === "/") return "Home";
+  if (currentPath === "/listpic") return "Daftar PIC";
+  if (currentPath === "/form-request") return "Form Request";
+  if (currentPath === "/visitor") return "Riwayat Pengunjung";
+  if (currentPath === "/info") return "Informasi Penting";
+
+  // Tambahan: untuk menangani route dinamis /listpic/...
+  if (currentPath.startsWith("/listpic/")) {
+    const divisiSlug = currentPath.split("/")[2];
+    const divisiMap: Record<string, string> = {
+      "transport-planning": "Transport Planning",
+      "duty-dc": "Duty DC",
+      "planner-dc": "Planner DC",
+    };
+    return `PIC ${divisiMap[divisiSlug] || divisiSlug}`;
+  }
+
+  return "Lacak Pengiriman";
+};
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-red-400 via-red-400 to-rose-500/40 backdrop-blur-md border-b border-white/50 shadow-sm text-white">

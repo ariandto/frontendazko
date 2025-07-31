@@ -7,7 +7,7 @@ import {
   XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
-import Navigation from "../layouts/Navigation";
+import Navigation from "../layouts/TopNavigation";
 import { Helmet } from "react-helmet";
 import { API_VISIT } from "../config/apiurl";
 import Footer from "../layouts/Footer";

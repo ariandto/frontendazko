@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Clock, Users, AlertTriangle, Loader, X, ChevronDown } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import Navigation from "../layouts/Navigation";
+import Navigation from "../layouts/TopNavigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
 import { useParams } from "react-router-dom";

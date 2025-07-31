@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navigation from "../layouts/Navigation";
+import Navigation from "../layouts/TopNavigation";
 import {
   API_VISIT,
   API_VISITORS_COUNT,
