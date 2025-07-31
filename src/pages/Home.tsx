@@ -289,7 +289,7 @@ function Home() {
 
     try {
       const apiUrl = getTrackingApis();
-      console.log("✅ API yang digunakan:", apiUrl);
+      // console.log("✅ API yang digunakan:", apiUrl);
       const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
 
       if (!res.ok) {
@@ -299,8 +299,8 @@ function Home() {
       const result = await res.json();
 
       // Debug log
-      console.log("Isi data:", result);
-      console.log("Contoh item:", result[0]);
+      // console.log("Isi data:", result);
+      // console.log("Contoh item:", result[0]);
 
       // Validasi hasil
       if (Array.isArray(result) && result.length > 0) {
