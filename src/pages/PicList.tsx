@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
-import { Clock, Users, AlertTriangle, Loader, X, ChevronDown } from "lucide-react";
+import {
+  Clock,
+  Users,
+  AlertTriangle,
+  Loader,
+  X,
+  ChevronDown,
+} from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import Navigation from "../layouts/TopNavigation";
 import { API_URL, API_USERS, API_VISIT } from "../config/apiurl";
 import { Helmet } from "react-helmet";
-import { useParams,useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 interface User {
   id: number;
@@ -71,49 +78,53 @@ export default function PicList() {
 
     postVisit();
   }, []);
-  
+
   const { divisi } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-  const decodedDivisi = divisi ? decodeURIComponent(divisi.replace(/-/g, " ")) : "All";
-  setSelectedDepartment(decodedDivisi);
+    const decodedDivisi = divisi
+      ? decodeURIComponent(divisi.replace(/-/g, " "))
+      : "All";
+    setSelectedDepartment(decodedDivisi);
 
-  if (decodedDivisi === "All") {
-    setFilteredUsers(users);
-  } else {
-    const filtered = users.filter((u) => u.department.toLowerCase() === decodedDivisi.toLowerCase());
-    setFilteredUsers(filtered);
-  }
-}, [divisi, users]);
+    if (decodedDivisi === "All") {
+      setFilteredUsers(users);
+    } else {
+      const filtered = users.filter(
+        (u) => u.department.toLowerCase() === decodedDivisi.toLowerCase()
+      );
+      setFilteredUsers(filtered);
+    }
+  }, [divisi, users]);
 
   const departments = [
-  { value: "All", label: "Semua Divisi" },
-  { value: "Transport Planning", label: "Transport Planning" },
-  { value: "Planner DC", label: "Planner DC" },
-  { value: "Duty DC", label: "Duty DC" },
-];
+    { value: "All", label: "Semua Divisi" },
+    { value: "Transport Planning", label: "Transport Planning" },
+    { value: "Planner DC", label: "Planner DC" },
+    { value: "Duty DC", label: "Duty DC" },
+  ];
 
- const handleDepartmentSelect = (value: string) => {
-  setSelectedDepartment(value);
-  setIsDropdownOpen(false);
+  const handleDepartmentSelect = (value: string) => {
+    setSelectedDepartment(value);
+    setIsDropdownOpen(false);
 
-  // Ganti URL agar TopNavigation bisa menampilkan judul sesuai divisi
-  if (value === "All") {
-    navigate("/listpic");
-  } else {
-    const slug = value.toLowerCase().replace(/\s+/g, "-");
-    navigate(`/listpic/${slug}`);
-  }
-};
+    // Ganti URL agar TopNavigation bisa menampilkan judul sesuai divisi
+    if (value === "All") {
+      navigate("/listpic");
+    } else {
+      const slug = value.toLowerCase().replace(/\s+/g, "-");
+      navigate(`/listpic/${slug}`);
+    }
+  };
 
   const openImageModal = (user: User) => {
-    console.log('Opening modal for user:', user.name); // Debug log
+    console.log("Opening modal for user:", user.name); // Debug log
     setSelectedUser(user);
   };
 
   const closeImageModal = () => {
-    console.log('Closing modal'); // Debug log
+    console.log("Closing modal"); // Debug log
     setSelectedUser(null);
   };
 
@@ -149,7 +160,10 @@ export default function PicList() {
     <>
       <Helmet>
         <title>Daftar PIC - Azko</title>
-        <meta name="description" content="Lihat daftar PIC berdasarkan divisi di Azko." />
+        <meta
+          name="description"
+          content="Lihat daftar PIC berdasarkan divisi di Azko."
+        />
       </Helmet>
 
       <Navigation />
@@ -171,13 +185,17 @@ export default function PicList() {
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
                   <span className="font-medium text-left">
-                    {departments.find(d => d.value === selectedDepartment)?.label}
+                    {departments.find(
+                      (d) =>
+                        d.value.toLowerCase() ===
+                        selectedDepartment.toLowerCase()
+                    )?.label || selectedDepartment}
                   </span>
                 </div>
-                <ChevronDown 
+                <ChevronDown
                   className={`w-5 h-5 transition-transform duration-300 ${
-                    isDropdownOpen ? 'rotate-180' : ''
-                  }`} 
+                    isDropdownOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
@@ -194,15 +212,15 @@ export default function PicList() {
                         onClick={() => handleDepartmentSelect(dept.value)}
                         className={`w-full px-6 py-4 text-left hover:bg-white/20 transition-all duration-200 flex items-center space-x-3 ${
                           selectedDepartment === dept.value
-                            ? 'bg-white/15 text-white'
-                            : 'text-white/90 hover:text-white'
+                            ? "bg-white/15 text-white"
+                            : "text-white/90 hover:text-white"
                         }`}
                       >
-                        <div 
+                        <div
                           className={`w-2 h-2 rounded-full ${
                             selectedDepartment === dept.value
-                              ? 'bg-gradient-to-r from-cyan-400 to-blue-500'
-                              : 'bg-white/40'
+                              ? "bg-gradient-to-r from-cyan-400 to-blue-500"
+                              : "bg-white/40"
                           }`}
                         />
                         <span className="font-medium">{dept.label}</span>
@@ -220,7 +238,11 @@ export default function PicList() {
           {/* Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {filteredUsers.map((user) => (
-              <UserCard key={user.id} user={user} onImageClick={openImageModal} />
+              <UserCard
+                key={user.id}
+                user={user}
+                onImageClick={openImageModal}
+              />
             ))}
           </div>
 
@@ -238,11 +260,11 @@ export default function PicList() {
 
       {/* Image Modal */}
       {selectedUser && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
           onClick={closeImageModal}
         >
-          <div 
+          <div
             className="relative max-w-4xl max-h-[90vh] bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
@@ -252,19 +274,22 @@ export default function PicList() {
             >
               <X className="w-6 h-6" />
             </button>
-            
+
             <div className="p-6">
               <img
                 src={`${API_URL}/${selectedUser.photo}`}
                 alt={selectedUser.name}
                 className="w-full h-auto max-h-[70vh] object-contain rounded-2xl shadow-2xl"
                 onError={(e) => {
-                  e.currentTarget.src = "https://via.placeholder.com/800x600?text=Image+Not+Found";
+                  e.currentTarget.src =
+                    "https://via.placeholder.com/800x600?text=Image+Not+Found";
                 }}
               />
-              
+
               <div className="mt-6 text-center">
-                <h3 className="text-2xl font-bold text-white mb-2">{selectedUser.name}</h3>
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  {selectedUser.name}
+                </h3>
                 <div className="flex flex-wrap justify-center gap-3">
                   <span className="text-sm font-medium bg-gradient-to-r from-cyan-500 to-blue-500 text-white px-4 py-2 rounded-full shadow">
                     {selectedUser.department}
@@ -283,7 +308,13 @@ export default function PicList() {
   );
 }
 
-const UserCard = ({ user, onImageClick }: { user: User; onImageClick: (user: User) => void }) => {
+const UserCard = ({
+  user,
+  onImageClick,
+}: {
+  user: User;
+  onImageClick: (user: User) => void;
+}) => {
   const openWhatsApp = (phone: string) => {
     if (!phone.startsWith("628") || phone.length < 11) {
       alert("Nomor WhatsApp tidak valid.");
@@ -296,10 +327,10 @@ const UserCard = ({ user, onImageClick }: { user: User; onImageClick: (user: Use
     <div className="group bg-white/10 backdrop-blur-lg rounded-3xl border border-white/20 hover:border-white/40 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-2xl">
       <div className="relative p-4 sm:p-6 pt-6">
         <div className="relative mx-auto w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48">
-          <div 
+          <div
             className="relative w-full h-full cursor-pointer group/image"
             onClick={() => {
-              console.log('Image clicked for user:', user.name); // Debug log
+              console.log("Image clicked for user:", user.name); // Debug log
               onImageClick(user);
             }}
           >
@@ -331,21 +362,23 @@ const UserCard = ({ user, onImageClick }: { user: User; onImageClick: (user: Use
         </div>
       </div>
       <div className="px-4 sm:px-6 pb-4 text-center">
-        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{user.name}</h3>
+        <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+          {user.name}
+        </h3>
         <div className="flex flex-wrap justify-center gap-2 mb-4">
           <span
-  className={`text-xs font-medium px-3 py-1 rounded-full shadow ${
-    user.department === "Duty DC"
-      ? "bg-gradient-to-r from-yellow-500 to-red-500"
-      : user.department === "Planner DC"
-      ? "bg-gradient-to-r from-green-400 to-green-600"
-      : user.department === "Transport Planning"
-      ? "bg-gradient-to-r from-pink-500 to-rose-500"
-      : "bg-gray-400"
-  } text-white`}
->
-  {user.department}
-</span>
+            className={`text-xs font-medium px-3 py-1 rounded-full shadow ${
+              user.department === "Duty DC"
+                ? "bg-gradient-to-r from-yellow-500 to-red-500"
+                : user.department === "Planner DC"
+                ? "bg-gradient-to-r from-green-400 to-green-600"
+                : user.department === "Transport Planning"
+                ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                : "bg-gray-400"
+            } text-white`}
+          >
+            {user.department}
+          </span>
           <span className="text-xs font-medium bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full shadow flex items-center">
             <Clock className="w-3 h-3 mr-1" />
             Shift {user.shift}
