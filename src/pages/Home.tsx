@@ -259,6 +259,7 @@ function Home() {
 
   const handleSearch = () => {
   const trimmedQuery = query.trim();
+
   if (!trimmedQuery) {
     showNotification("Masukkan nomor order atau nomor receive.", "warning");
     return;
@@ -266,28 +267,52 @@ function Home() {
 
   // Debounce
   if (debounceRef.current) clearTimeout(debounceRef.current);
+
   debounceRef.current = setTimeout(async () => {
     setLoading(true);
     setHasSearched(true);
 
+    // Cek cache
     if (cacheRef.current.has(trimmedQuery)) {
-      setData(cacheRef.current.get(trimmedQuery)!);
+      const cachedData = cacheRef.current.get(trimmedQuery)!;
+      setData(cachedData);
       setLoading(false);
-      showNotification("Data ditampilkan dari cache.", "success");
+
+      if (cachedData.length > 0) {
+        showNotification("Data ditampilkan dari cache.", "success");
+      } else {
+        showNotification("Data tidak ditemukan di cache.", "warning");
+      }
+
       return;
     }
 
     try {
-      const apiUrl = getTrackingApi(); 
-
+      const apiUrl = getTrackingApi();
       const res = await fetch(`${apiUrl}?q=${encodeURIComponent(trimmedQuery)}`);
+
+      if (!res.ok) {
+        throw new Error(`Gagal mengambil data: ${res.status}`);
+      }
+
       const result = await res.json();
+
+      // Debug log
       console.log("Isi data:", result);
       console.log("Contoh item:", result[0]);
-      setData(result);
-      cacheRef.current.set(trimmedQuery, result);
-      showNotification("Data berhasil ditemukan!", "success");
+
+      // Validasi hasil
+      if (Array.isArray(result) && result.length > 0) {
+        setData(result);
+        cacheRef.current.set(trimmedQuery, result);
+        showNotification("Data berhasil ditemukan!", "success");
+      } else {
+        setData([]);
+        cacheRef.current.set(trimmedQuery, []);
+        showNotification("Data tidak ditemukan.", "warning");
+      }
     } catch (err) {
+      console.error("❌ Error saat fetch:", err);
       setData([]);
       showNotification("Terjadi kesalahan saat mencari data.", "error");
     } finally {
@@ -295,6 +320,7 @@ function Home() {
     }
   }, 400);
 };
+
 
 
   const handleReset = () => {
