@@ -275,7 +275,7 @@ function Home() {
 
       try {
         const res = await fetch(
-          `https://script.google.com/macros/s/AKfycbznes740p7n0dSKScA0T8CBhQEw4C2wMQ3T9BE3waICqXJsLf-JYihbT5eH6dmV67GR2A/exec?q=${encodeURIComponent(trimmedQuery)}`
+          `https://script.google.com/macros/s/AKfycbxGllRkDHvNBGeTx9o24l42cDyg8fWgm2rETU-Z9sJPaRa282wxorhq8EkVysN8M7q6cg/exec?q=${encodeURIComponent(trimmedQuery)}`
         );
         const result = await res.json();
         setData(result);
