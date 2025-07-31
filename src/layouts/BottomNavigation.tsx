@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Users, FileText, Info } from "lucide-react";
 
@@ -7,6 +7,7 @@ export default function BottomNavigation() {
   const navigate = useNavigate();
   const currentPath = location.pathname;
   const [showDropdown, setShowDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isActive = (path: string) =>
     currentPath.startsWith(path) ? "text-yellow-300" : "text-white";
@@ -16,11 +17,30 @@ export default function BottomNavigation() {
     navigate(divisi === "All" ? "/listpic" : `/listpic/${divisi.replace(/\s+/g, "-")}`);
   };
 
+  // ✅ Tutup dropdown saat klik di luar area dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    if (showDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showDropdown]);
+
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-gradient-to-br from-rose-600 via-red-500 to-red-600 border-t border-white/30 shadow-inner backdrop-blur-md">
       <div className="flex justify-around items-center h-14 px-6 text-sm relative">
         {/* PIC with Dropdown */}
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setShowDropdown(!showDropdown)}
             className={`flex flex-col items-center ${isActive("/listpic")}`}
@@ -36,7 +56,7 @@ export default function BottomNavigation() {
                 onClick={() => handleDivisiSelect("All")}
                 className="w-full text-left px-4 py-2 bg-gray-200 hover:opacity-80 rounded-t-xl"
               >
-                Semua PIC
+               ALL
               </button>
               <button
                 onClick={() => handleDivisiSelect("Transport Planning")}
