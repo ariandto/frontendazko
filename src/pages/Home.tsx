@@ -366,9 +366,9 @@ function Home() {
             </div>
           </div>
 
-          <div className="bg-white/40 backdrop-blur-lg rounded-3xl p-4 sm:p-8 shadow-xl border border-white/20 mb-8">
+          
             <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
-          </div>
+         
 
           <div className="space-y-5">
             {hasSearched && !loading && data.length === 0 ? (
