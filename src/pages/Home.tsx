@@ -243,12 +243,12 @@ function Home() {
 
   // Visit log
   useEffect(() => {
-    fetch(API_VISIT, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
-    }).catch((err) => console.error("❌ Gagal kirim kunjungan:", err));
-  }, []);
+  void fetch(API_VISIT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({}),
+  }).catch(() => {});
+}, []);
 
   // Notifikasi
   const showNotification = (message: string, type: string) => {
