@@ -4,7 +4,6 @@ import {
   Package,
   Phone,
   RotateCcw,
-  XCircle,
 } from "lucide-react";
 import azko from "../assets/azko.png";
 import Navigation from "../layouts/TopNavigation";
