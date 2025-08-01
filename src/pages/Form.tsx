@@ -7,25 +7,23 @@ import { useEffect } from "react";
 const Form = () => {
 
   useEffect(() => {
-    const postVisit = async () => {
-      try {
-        const res = await fetch(API_VISIT, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({}),
-        });
-  
-        const data = await res.json();
-        console.log("📌 Visit logged from Home:", data);
-      } catch (err) {
-        console.error("❌ Gagal kirim kunjungan:", err);
-      }
-    };
-  
-    postVisit();
-  }, []);
+  const postVisit = async () => {
+    try {
+      await fetch(API_VISIT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}),
+      });
+    } catch (err) {
+      // Optional: tangani error secara diam-diam atau tampilkan notifikasi UI
+    }
+  };
+
+  postVisit();
+}, []);
+
 
   return (
     <>
