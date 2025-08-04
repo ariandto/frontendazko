@@ -16,7 +16,7 @@ export default function EditUserForm() {
   const navigate = useNavigate();
   const [users, setUsers] = useState<User[]>([]);
   const [search, setSearch] = useState("");
-  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+ 
   const [form, setForm] = useState<User | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [message, setMessage] = useState("");
@@ -50,11 +50,10 @@ export default function EditUserForm() {
       u.shift.toLowerCase().includes(search)
   );
 
-  const handleSelectUser = (user: User) => {
-    setSelectedUser(user);
-    setForm(user);
-    setMessage("");
-  };
+const handleSelectUser = (user: User) => {
+  setForm(user);
+  setMessage("");
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     if (!form) return;
