@@ -29,22 +29,26 @@ export default function EditUserForm() {
   const [loading, setLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch(`${API_USERS}/${id}`);
-        if (!res.ok) throw new Error("Gagal memuat data");
-        const data = await res.json();
-        setForm(data);
-      } catch (err) {
-        setMessage("❌ Gagal memuat data user.");
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const res = await fetch(`${API_USERS}/${id}`);
+      const raw = await res.text();
+      console.log("✅ Respons mentah:", raw);
 
-    fetchUser();
-  }, [id]);
+      const data = JSON.parse(raw);
+      setForm(data);
+    } catch (err) {
+      console.error("❌ Gagal memuat user:", err);
+      setMessage("❌ Gagal memuat data user.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (id) fetchUser();
+}, [id]);
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -97,7 +101,10 @@ export default function EditUserForm() {
     }
   };
 
-  if (loading) return <p className="text-center py-10">🔄 Memuat data...</p>;
+  if (!form.name && !loading) {
+  return <p className="text-center text-red-600 py-10">❌ Data user tidak ditemukan.</p>;
+}
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-400 to-red-500 py-8 px-4">
