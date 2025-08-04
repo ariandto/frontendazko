@@ -15,6 +15,7 @@ const getPageTitle = () => {
   if (currentPath === "/form-request") return "Form Request";
   if (currentPath === "/visitor") return "Riwayat Pengunjung";
   if (currentPath === "/info") return "Informasi Penting";
+  if (currentPath === "/update-user") return "Update User";
 
   // Tambahan: untuk menangani route dinamis /listpic/...
   if (currentPath.startsWith("/listpic/")) {
@@ -71,6 +72,14 @@ const getPageTitle = () => {
               }`}
             >
               <Info className="w-5 h-5" /> Info
+            </Link>
+             <Link
+              to="/update-user"
+              className={`flex items-center gap-1 font-medium transition-all ${
+                currentPath === "/update-user" ? "text-yellow-200" : "hover:text-green-200"
+              }`}
+            >
+              <Info className="w-5 h-5" /> Mng Usr
             </Link>
           </div>
 
