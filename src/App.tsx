@@ -24,7 +24,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
           <Route path="/visitor" element={<VisitorStats />} />
-          <Route path="/update-user" element={<EditUserForm />} />
+          <Route path="/update-user/:id" element={<EditUserForm />} />
         </Routes>
         <BottomNavigation />
       </Router>
