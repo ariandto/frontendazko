@@ -127,13 +127,14 @@ export default function TopNavigation() {
               >
                 <Info className="w-5 h-5" /> Info
               </Link>
-              <Link
-                to="/update-user"
-                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <Settings className="w-5 h-5" /> Mng Usr
-              </Link>
+            <Link
+  to="/update-user"
+  className={`flex items-center gap-1 font-medium transition-all ${
+    currentPath === "/update-user" ? "text-yellow-200" : "hover:text-purple-200"
+  }`}
+>
+  <Settings className="w-5 h-5" /> Mng Usr
+</Link>
             </div>
           </div>
         )}
