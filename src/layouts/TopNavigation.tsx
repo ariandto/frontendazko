@@ -1,35 +1,31 @@
-// src/components/Navigation.tsx
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import azkologo from "../assets/azkologo.png";
-import { Home, Users, FileText, Info, X, MoreVertical } from "lucide-react";
+import { Home, Users, FileText, Info, X, MoreVertical, Settings } from "lucide-react";
 
 export default function TopNavigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const currentPath = location.pathname;
 
-const getPageTitle = () => {
-  if (currentPath === "/") return "Home";
-  if (currentPath === "/listpic") return "Daftar PIC";
-  if (currentPath === "/form-request") return "Form Request";
-  if (currentPath === "/visitor") return "Riwayat Pengunjung";
-  if (currentPath === "/info") return "Informasi Penting";
-  if (currentPath === "/update-user") return "Update User";
-
-  // Tambahan: untuk menangani route dinamis /listpic/...
-  if (currentPath.startsWith("/listpic/")) {
-    const divisiSlug = currentPath.split("/")[2];
-    const divisiMap: Record<string, string> = {
-      "transport-planning": "Transport Planning",
-      "duty-dc": "Duty DC",
-      "planner-dc": "Planner DC",
-    };
-    return `PIC ${divisiMap[divisiSlug] || divisiSlug}`;
-  }
-
-  return "Lacak Pengiriman";
-};
+  const getPageTitle = () => {
+    if (currentPath === "/") return "Home";
+    if (currentPath === "/listpic") return "Daftar PIC";
+    if (currentPath === "/form-request") return "Form Request";
+    if (currentPath === "/visitor") return "Riwayat Pengunjung";
+    if (currentPath === "/info") return "Informasi Penting";
+    if (currentPath === "/update-user") return "Manage User";
+    if (currentPath.startsWith("/listpic/")) {
+      const divisiSlug = currentPath.split("/")[2];
+      const divisiMap: Record<string, string> = {
+        "transport-planning": "Transport Planning",
+        "duty-dc": "Duty DC",
+        "planner-dc": "Planner DC",
+      };
+      return `PIC ${divisiMap[divisiSlug] || divisiSlug}`;
+    }
+    return "Lacak Pengiriman";
+  };
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-br from-red-400 via-red-400 to-rose-500/40 backdrop-blur-md border-b border-white/50 shadow-sm text-white">
@@ -73,13 +69,13 @@ const getPageTitle = () => {
             >
               <Info className="w-5 h-5" /> Info
             </Link>
-             <Link
+            <Link
               to="/update-user"
               className={`flex items-center gap-1 font-medium transition-all ${
-                currentPath === "/update-user" ? "text-yellow-200" : "hover:text-green-200"
+                currentPath === "/update-user" ? "text-yellow-200" : "hover:text-purple-200"
               }`}
             >
-              <Info className="w-5 h-5" /> Mng Usr
+              <Settings className="w-5 h-5" /> Mng Usr
             </Link>
           </div>
 
@@ -87,7 +83,7 @@ const getPageTitle = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="relative w-9 h-9 flex flex-col justify-center items-center group"
+              className="w-9 h-9 flex items-center justify-center"
               aria-label="Menu"
             >
               {isMenuOpen ? (
@@ -99,46 +95,45 @@ const getPageTitle = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {/* Mobile Dropdown */}
         {isMenuOpen && (
           <div className="md:hidden mt-2 bg-gradient-to-br from-red-500 via-red-600 to-rose-600/95 backdrop-blur-md border-t border-white/20 shadow-md rounded-b-lg">
             <div className="px-4 py-4 space-y-3 text-white">
-              {currentPath !== "/" && (
-                <Link
-                  to="/"
-                  className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Home className="w-5 h-5" /> Home
-                </Link>
-              )}
-              {currentPath !== "/listpic" && (
-                <Link
-                  to="/listpic"
-                  className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Users className="w-5 h-5" /> PIC
-                </Link>
-              )}
-              {currentPath !== "/form-request" && (
-                <Link
-                  to="/form-request"
-                  className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <FileText className="w-5 h-5" /> Form Request
-                </Link>
-              )}
-              {currentPath !== "/info" && (
-                <Link
-                  to="/info"
-                  className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <Info className="w-5 h-5" /> Info
-                </Link>
-              )}
+              <Link
+                to="/"
+                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Home className="w-5 h-5" /> Home
+              </Link>
+              <Link
+                to="/listpic"
+                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Users className="w-5 h-5" /> PIC
+              </Link>
+              <Link
+                to="/form-request"
+                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <FileText className="w-5 h-5" /> Form Request
+              </Link>
+              <Link
+                to="/info"
+                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Info className="w-5 h-5" /> Info
+              </Link>
+              <Link
+                to="/update-user"
+                className="flex items-center gap-2 font-medium hover:text-gray-100 transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <Settings className="w-5 h-5" /> Mng Usr
+              </Link>
             </div>
           </div>
         )}
