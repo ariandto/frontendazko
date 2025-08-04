@@ -8,6 +8,7 @@ import Info from "./pages/Info";
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
 import VisitorStats from "./pages/VisitorStats";
+import VisitorStats from "./pages/EditUserForm";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
           <Route path="/visitor" element={<VisitorStats />} />
+          <Route path="/update-user" element={<EditUserForm />} />
         </Routes>
         <BottomNavigation />
       </Router>
