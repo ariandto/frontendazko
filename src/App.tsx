@@ -8,7 +8,7 @@ import Info from "./pages/Info";
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
 import VisitorStats from "./pages/VisitorStats";
-import VisitorStats from "./pages/EditUserForm";
+import EditUserForm from "./pages/EditUserForm";
 
 
 function App() {
