@@ -12,8 +12,8 @@ import Info from "./pages/Info";
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
 import VisitorStats from "./pages/VisitorStats";
-import EditUserForm from "./pages/EditUserForm";
-import EditUserForm from "./pages/ManageUser";
+import EditUserForm from "./pages/EditUserForm";  // ✅ Komponen modal/form edit user
+import ManageUser from "./pages/ManageUser";       // ✅ Komponen halaman manajemen
 
 function App() {
   return (
@@ -24,22 +24,22 @@ function App() {
           {/* Halaman Utama */}
           <Route path="/" element={<Home />} />
 
-          {/* Form Upload PIC Baru */}
+          {/* Upload Data PIC */}
           <Route path="/upload" element={<UploadForm />} />
 
           {/* Daftar PIC */}
           <Route path="/listpic" element={<PicList />} />
           <Route path="/listpic/:divisi" element={<PicList />} />
 
-          {/* Halaman Tambahan */}
+          {/* Halaman Lain */}
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
           <Route path="/visitor" element={<VisitorStats />} />
+
+          {/* Manajemen User */}
           <Route path="/manage" element={<ManageUser />} />
 
-          {/* Edit User */}
-          <Route path="/update-user" element={<EditUserForm />} />
-          {/* Optional: dukung versi lama */}
+          {/* Edit User (opsional jika ingin direct route) */}
           <Route path="/update-user/:id" element={<EditUserForm />} />
         </Routes>
         <BottomNavigation />
