@@ -13,6 +13,7 @@ import Form from "./pages/Form";
 import PicList from "./pages/PicList";
 import VisitorStats from "./pages/VisitorStats";
 import EditUserForm from "./pages/EditUserForm";
+import EditUserForm from "./pages/ManageUser";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           <Route path="/info" element={<Info />} />
           <Route path="/form-request" element={<Form />} />
           <Route path="/visitor" element={<VisitorStats />} />
+          <Route path="/manage" element={<ManageUser />} />
 
           {/* Edit User */}
           <Route path="/update-user" element={<EditUserForm />} />
