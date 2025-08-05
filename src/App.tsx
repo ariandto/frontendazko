@@ -39,8 +39,6 @@ function App() {
           {/* Manajemen User */}
           <Route path="/manage" element={<ManageUser />} />
 
-          {/* Edit User (opsional jika ingin direct route) */}
-          <Route path="/update-user/:id" element={<EditUserForm />} />
         </Routes>
         <BottomNavigation />
       </Router>
