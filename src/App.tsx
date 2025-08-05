@@ -11,8 +11,7 @@ import UploadForm from "./pages/UploadForm";
 import Info from "./pages/Info";
 import Form from "./pages/Form";
 import PicList from "./pages/PicList";
-import VisitorStats from "./pages/VisitorStats";
-import EditUserForm from "./pages/EditUserForm";  // ✅ Komponen modal/form edit user
+import VisitorStats from "./pages/VisitorStats"; // ✅ Komponen modal/form edit user
 import ManageUser from "./pages/ManageUser";       // ✅ Komponen halaman manajemen
 
 function App() {
