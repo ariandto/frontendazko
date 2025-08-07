@@ -181,16 +181,38 @@ const SearchBar = ({
     if (e.key === "Enter") onSearch();
   };
 
+  <style>
+{`
+  @keyframes marquee {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  .animate-marquee {
+    animation: marquee 10s linear infinite;
+  }
+`}
+</style>
+
+
   return (
-    <div className="relative mb-6">
+  <div className="relative mb-6">
+      {/* Custom placeholder berjalan */}
+      {query === "" && (
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden flex items-center px-4">
+          <div className="whitespace-nowrap animate-marquee text-gray-400 text-base sm:text-lg">
+            Masukkan nomor order atau nomor receive untuk melacak pengiriman...
+          </div>
+        </div>
+      )}
+
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyPress}
-        placeholder="Masukkan nomor receive / nomor order / nama customer..."
-        className="w-full px-5 py-3 pl-12 text-base sm:text-lg border-2 border-gray-200 rounded-2xl focus:border-red-500 focus:outline-none transition bg-white/70 backdrop-blur"
+        className="w-full px-5 py-3 text-base sm:text-lg border-2 border-gray-200 rounded-2xl focus:border-red-500 focus:outline-none transition bg-white/70 backdrop-blur"
       />
+
       <button
         onClick={onSearch}
         className="mt-4 w-full bg-gradient-to-r from-red-500 to-rose-600 text-white py-3 px-8 rounded-2xl hover:from-red-600 hover:to-rose-700 transition font-semibold text-base sm:text-lg shadow-md hover:shadow-lg"
