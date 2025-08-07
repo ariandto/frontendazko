@@ -345,11 +345,11 @@ function Home() {
       <Navigation />
 
       {/* Efek Background */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+{/*       <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 bg-red-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse"></div>
         <div className="absolute top-1/3 right-1/4 w-40 h-40 sm:w-72 sm:h-72 bg-rose-400 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-1000"></div>
         <div className="absolute bottom-1/4 left-1/3 w-40 h-40 sm:w-72 sm:h-72 bg-red-300 rounded-full mix-blend-multiply filter blur-xl opacity-40 animate-pulse delay-2000"></div>
-      </div>
+      </div> */}
 
       {/* Konten */}
       <div className="relative z-10 pt-20 px-2 sm:px-4 md:px-8">
