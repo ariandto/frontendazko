@@ -188,7 +188,7 @@ const SearchBar = ({
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyPress}
-        placeholder="Masukkan nomor order atau nomor receive..."
+        placeholder="Masukkan nomor receive / nomor order / nama customer..."
         className="w-full px-5 py-3 pl-12 text-base sm:text-lg border-2 border-gray-200 rounded-2xl focus:border-red-500 focus:outline-none transition bg-white/70 backdrop-blur"
       />
       <button
