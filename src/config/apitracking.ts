@@ -16,11 +16,6 @@ export function getTrackingApis(): string[] {
   const nextMonthKey = `${month === 12 ? year + 1 : year}-${month === 12 ? "01" : String(month + 1).padStart(2, "0")}`;
 
   const apis: string[] = [];
-
-  // ✅ Urutan prioritas pencarian:
-  // 1. Bulan sekarang
-  // 2. Bulan sebelumnya
-  // 3. Bulan berikutnya
   if (apiMap[currentKey]) apis.push(apiMap[currentKey]);
   if (apiMap[prevMonthKey]) apis.push(apiMap[prevMonthKey]);
   if (apiMap[nextMonthKey]) apis.push(apiMap[nextMonthKey]);
