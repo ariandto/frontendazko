@@ -77,8 +77,8 @@ const InfoPage = () => {
               </ul>
             </div>
 
-            {/* Tautan ke halaman visitor */}
-            <div className="flex justify-start items-center gap-1 text-blue-500 hover:text-red-700 transition">
+            {/* Tautan ke halaman visitor 
+             <div className="flex justify-start items-center gap-1 text-blue-500 hover:text-red-700 transition">
 
               <Info size={16} />
               <Link
@@ -88,7 +88,7 @@ const InfoPage = () => {
                 Lihat Riwayat Pengunjung
               </Link>
             </div>
-          </div>
+          </div> */}
 
           {/* Tombol kembali */}
           <div className="pt-4 text-center">
